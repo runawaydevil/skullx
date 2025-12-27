@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {{#match @custom.font "monospace"}}
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+            rel="stylesheet">
+    {{/match}}
+    {{#match @custom.font "sans-serif"}}
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+            rel="stylesheet">
+    {{/match}}
+    {{#match @custom.font "serif"}}
+        <link href="https://fonts.googleapis.com/css2?family=Podkova:wght@400;700&display=swap"
+              rel="stylesheet">
+    {{/match}}
+
+    <link rel="stylesheet" href="{{asset "built/index.css"}}"/>
+
+    <title>{{meta_title}}</title>
+    {{ghost_head}}
+    {{!-- Outputs important meta data and settings, should always be in <head> --}}
+
+
+    <style>
+        :root {
+            {{#match @custom.font "Monospace"}}--font: var(--font-mono);{{/match}}
+            {{#match @custom.font "Sans-serif"}}--font: var(--font-sans-serif);{{/match}}
+            {{#match @custom.font "Serif"}}--font: var(--font-serif);{{/match}}
+
+            {{#match @custom.layout "Full-width"}}--container-width: 100%;{{/match}}
+            {{#match @custom.layout "1220px"}}--container-width: 1220px;{{/match}}
+            {{#match @custom.layout "960px"}}--container-width: 960px;{{/match}}
+        }
+    </style>
+    <script src="{{asset "built/index.js"}}" defer></script>
+</head>
+<body class="{{body_class}}">
+<div class="gh-viewport">
+
+    <header id="gh-head" class="gh-head">
+        <nav class="gh-head-inner gh-container">
+
+            <div class="gh-head-brand">
+                <a class="gh-head-logo" href="{{@site.url}}">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}"/>
+                    {{else}}
+                        {{@site.title}}
+                    {{/if}}
+                </a>
+                <a class="gh-burger" role="button">
+                    <div class="gh-burger-box">
+                        <div class="gh-burger-inner"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="gh-head-menu">
+                {{navigation}}
+            </div>
+            <div class="gh-head-actions">
+                <div class="gh-head-actions-list">
+                    {{search}}
+                    {{!--#if @site.members_enabled}}
+                        <a class="gh-button" href="{{@site.signup_url}}">Sign up</a>
+                    {{/if--}}
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="gh-main">
+        <div class="gh-container body">
+            <div class="gh-page">
+                {{{body}}}
+                {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
+            </div>
+
+            {{> "sidebar"}}
+        </div>
+    </main>
+
+    <footer class="gh-foot">
+        <div class="gh-container">
+            <div class="gh-foot-menu">
+                {{navigation type="secondary"}}
+            </div>
+            <div class="gh-foot-meta">
+                {{t "Designed by"}}
+                <a href="https://pablo.space">runawaydevil</a>
+                <br/>
+                {{t "Published with"}}
+                <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                | {{t "Some icons by"}} <a target="_blank" href="https://icons8.com">Icons8</a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+{{!-- <foot> --}}
+{{ghost_foot}}
+{{!-- Outputs important scripts - should always be included before closing body tag --}}
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+{
+    "name": "skullx",
+    "description": "SkullX - Dark purple Ghost theme with dracula colors and modern features.",
+    "version": "0.01",
+    "engines": {
+        "ghost": ">=6.0.0"
+    },
+    "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.png",
+        "mobile": "assets/screenshot-mobile.png"
+    },
+    "scripts": {
+        "dev": "rollup -c --environment BUILD:development -w",
+        "build": "rollup -c --environment BUILD:production",
+        "zip": "pnpm run build && bestzip skullx.zip assets/* partials/* members/* locales/* *.hbs package.json",
+        "test": "gscan .",
+        "pretest": "pnpm run build"
+    },
+    "author": {
+        "name": "runawaydevil",
+        "url": "https://pablo.space"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Dark",
+            "Blog"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/runawaydevil/skullx.git"
+    },
+    "bugs": "https://github.com/runawaydevil/skullx/issues",
+    "contributors": [
+        {
+            "name": "Ghost Foundation",
+            "url": "https://github.com/TryGhost/Starter/graphs/contributors"
+        },
+        {
+            "name": "runawaydevil"
+        }
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.21.0",
+        "@babel/preset-env": "^7.20.2",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-commonjs": "^24.0.1",
+        "@rollup/plugin-node-resolve": "^15.0.1",
+        "@rollup/plugin-terser": "^0.4.0",
+        "bestzip": "^2.2.1",
+        "gscan": "^5.0.0",
+        "highlight.js": "^11.7.0",
+        "postcss": "^8.4.21",
+        "postcss-import": "^15.1.0",
+        "postcss-preset-env": "^8.0.1",
+        "rollup": "^3.18.0",
+        "rollup-plugin-livereload": "^2.0.5",
+        "rollup-plugin-postcss": "^4.0.2",
+        "tocbot": "^4.20.1"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "config": {
+        "card_assets": true,
+        "posts_per_page": 15,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1200
+            },
+            "xl": {
+                "width": 2000
+            }
+        },
+        "custom": {
+            "font": {
+                "type": "select",
+                "options": [
+                    "Monospace",
+                    "Serif",
+                    "Sans-serif"
+                ],
+                "default": "Monospace"
+            },
+            "layout": {
+                "type": "select",
+                "options": [
+                    "Full-width",
+                    "1220px",
+                    "960px"
+                ],
+                "default": "1220px"
+            }
+        }
+    },
+    "type": "module"
+}

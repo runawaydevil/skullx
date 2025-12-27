@@ -1,0 +1,103 @@
+name: Run tests and create release if tag 'v*' is pushed
+on:
+    - push
+    - pull_request
+jobs:
+    test:
+        name: Run tests
+        runs-on: ubuntu-22.04
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Install Node.js
+                uses: actions/setup-node@v3
+                with:
+                    node-version: ^18
+
+            -   name: Install PNPM
+                id: pnpm-install
+                uses: pnpm/action-setup@v2
+                with:
+                    version: ^7.29
+                    run_install: false
+
+            -   name: Get pnpm store directory
+                id: pnpm-cache
+                shell: bash
+                run: |
+                    echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+            -   uses: actions/cache@v3
+                name: Setup pnpm cache
+                with:
+                    path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                    key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                    restore-keys: |
+                        ${{ runner.os }}-pnpm-store-
+
+            -   name: Install dependencies
+                run: pnpm install
+
+            -   name: Test theme
+                run: pnpm test
+    create_release:
+        name: Create Release
+        needs: test
+        if: startsWith(github.ref, 'refs/tags/v')
+        runs-on: ubuntu-22.04
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Install Node.js
+                uses: actions/setup-node@v3
+                with:
+                    node-version: ^18
+
+            -   name: Install PNPM
+                id: pnpm-install
+                uses: pnpm/action-setup@v2
+                with:
+                    version: ^7.29
+                    run_install: false
+
+            -   name: Get pnpm store directory
+                id: pnpm-cache
+                shell: bash
+                run: |
+                    echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+            -   uses: actions/cache@v3
+                name: Setup pnpm cache
+                with:
+                    path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                    key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                    restore-keys: |
+                        ${{ runner.os }}-pnpm-store-
+
+            -   name: Install dependencies
+                run: pnpm install
+
+            -   name: Create package
+                run: pnpm run zip
+
+            -   name: Create Release
+                id: create_release
+                uses: actions/create-release@v1
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+                with:
+                    tag_name: ${{ github.ref }}
+                    release_name: Release ${{ github.ref }}
+                    draft: false
+                    prerelease: false
+
+            -   name: Upload Release Asset
+                id: upload-release-asset
+                uses: actions/upload-release-asset@v1
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                with:
+                    upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`.
+                    asset_path: ./PurpleDark.zip
+                    asset_name: PurpleDark.zip
+                    asset_content_type: application/zip

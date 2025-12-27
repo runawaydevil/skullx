@@ -1,0 +1,72 @@
+<aside class="gh-sidebar">
+    {{#if post}}
+        <section class="table-of-content widget">
+            <h4>{{t "Table of contents"}}</h4>
+            <div class="gh-table-of-content toc">
+            </div>
+        </section>
+    {{/if}}
+    {{#get "authors" limit=1 }}
+        {{#foreach authors}}
+
+            <section class="author widget">
+                <div class="avatar">
+                    <a href="{{url}}" class="thumb">
+                <span class="image"
+                      style="background-image: url('{{profile_image}}')"></span>
+                    </a>
+                </div>
+                <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin">
+                        <a href="{{url}}">{{name}}</a>
+                    </h4>
+
+                    <p class="founder"></p>
+
+                    <div class="social">
+                        {{#if website}}
+                            <a href="{{website}}" target="_blank" rel="nofollow noopener"
+                               title="{{t "Website"}}: {{website}}">
+                                {{> "icons/globe"}}
+                            </a>
+                        {{/if}}
+                        {{#if twitter}}
+                            <a href="https://twitter.com/{{twitter}}" target="_blank"
+                               rel="nofollow noopener" title="{{t "Subscribe in"}} Twitter">
+                                {{> "icons/icons8-twitter"}}
+                            </a>
+                        {{/if}}
+                        {{#if facebook}}
+                            <a href="{{facebook}}" target="_blank" rel="nofollow noopener"
+                               title="{{t "Facebook"}}: {{facebook}}">
+                                {{> "icons/icons8-facebook"}}
+                            </a>
+                        {{/if}}
+                    </div>
+                </div>
+                <p>{{bio}}</p>
+            </section>
+        {{/foreach}}
+    {{/get}}
+    <section class="latest widget">
+        <h4>{{t "Latest posts"}}</h4>
+        {{#get "posts" limit="5" order="published_at DESC" as |short_posts|}}
+            {{#foreach short_posts}}
+                {{> "card-short"}}
+            {{/foreach}}
+        {{/get}}
+    </section>
+
+    {{! Get all tags and order them by post count }}
+
+    <section class="tags widget">
+        <h4>{{t "Tags"}}</h4>
+        <div class="tag-cloud">
+            {{#get "tags" limit="15" include="count.posts" order="count.posts desc"}}
+                {{#foreach tags}}
+                    <a href="{{url}}">{{name}} ({{count.posts}})</a>
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </section>
+</aside>

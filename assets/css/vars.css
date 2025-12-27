@@ -1,0 +1,50 @@
+/* Variables
+/* ---------------------------------------------------------- */
+
+:root {
+    /*
+    Dracula Theme Colors
+    https://github.com/dracula/dracula-theme
+     */
+    --cyan: #8be9fd;
+    --green: #50fa7b;
+    --orange: #ffb86c;
+    --pink: #ff79c6;
+    --purple: #bd93f9;
+    --red: #ff5555;
+    --yellow: #f1fa8c;
+    --color-primary: #f8f8f2;
+    --color-base: #f8f8f2;
+    --color-base-01: #f8f8f211;
+    --color-base-05: #f8f8f288;
+    --color-border: #44475a;
+    --color-bg: #411640bf;
+    --color-bg-secondary: #282a36bf;
+    --color-bg-secondary-solid: #282a36;
+    --color-comment: #6272a4;
+    --color-success: var(--green);
+    --color-error: var(--red);
+
+
+    /* Fonts */
+    --font-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    --font-serif: Podkova, Georgia, Times, serif;
+    --font-mono: 'JetBrains Mono', Menlo, Courier, monospace;
+    --font-light: 100;
+    --font-normal: 400;
+    --font-bold: 700;
+    --font-heavy: 800;
+
+    /* Breakpoints */
+    --xlarge: 1680px;
+    --large: 1280px;
+    --medium: 980px;
+    --small: 740px;
+    --xsmall: 480px;
+
+    /* Sizes */
+    --height: 4rem;
+    --margin: 2rem;
+    --radius: 0.5rem;
+
+}
