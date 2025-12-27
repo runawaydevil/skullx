@@ -20,7 +20,7 @@ Dark purple theme for Ghost CMS. Mix of starter theme, dracula colors and custom
 
 ## Screenshots
 
-![](assets/screenshot-desktop.png)
+![](https://shot.1208.pro/uploads/r3LLf8Eow9DsIgWniWjYvTBJU3BndOd1HwEcQRak.png)
 
 ## Installation
 
