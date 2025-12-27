@@ -1,7 +1,7 @@
 {
     "name": "skullx",
     "description": "SkullX - Dark purple Ghost theme with dracula colors and modern features.",
-    "version": "0.01",
+    "version": "0.1.0",
     "engines": {
         "ghost": ">=6.0.0"
     },
@@ -19,6 +19,7 @@
     },
     "author": {
         "name": "runawaydevil",
+        "email": "contact@pablo.space",
         "url": "https://pablo.space"
     },
     "gpm": {
