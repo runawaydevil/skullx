@@ -519,15 +519,22 @@ a.gh-card-title {
     .gh-card-thumbnail {
         max-width: 100%;
         margin: -18px -18px 16px -18px;
+        aspect-ratio: 16/9;
     }
 
     .gh-card-thumbnail, .gh-article .gh-card-thumbnail {
-        height: 180px;
+        height: auto;
+        min-height: 200px;
         margin-bottom: 10px;
     }
 
     .gh-postfeed .gh-card-thumbnail, .gh-article .gh-card-thumbnail {
         margin-right: -18px;
+    }
+
+    .gh-card-thumbnail .cover {
+        object-fit: cover;
+        object-position: center;
     }
 
     .gh-page-head > p {
@@ -536,5 +543,17 @@ a.gh-card-title {
 
     .gh-author-meta {
         font-size: 1.6rem;
+    }
+
+    /* Corrigir featured images cortadas em mobile */
+    .gh-post-feature img {
+        max-height: none;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .gh-post-feature {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
