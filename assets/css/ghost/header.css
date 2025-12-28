@@ -31,60 +31,6 @@
     height: 2rem;
 }
 
-/* Theme Toggle Button */
-.gh-theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    margin: 0 0 0 10px;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    cursor: pointer;
-    color: var(--text-2);
-    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    appearance: none;
-}
-
-.gh-theme-toggle:hover {
-    color: var(--text-1);
-    border-color: var(--accent);
-    background: var(--card);
-}
-
-.gh-theme-toggle:focus {
-    outline: none;
-    box-shadow: var(--focus-ring);
-}
-
-.gh-theme-toggle-icon {
-    width: 20px;
-    height: 20px;
-    stroke-width: 1.5;
-}
-
-.gh-theme-toggle-icon-moon {
-    display: none;
-}
-
-[data-theme="dark"] .gh-theme-toggle-icon-sun {
-    display: block;
-}
-
-[data-theme="dark"] .gh-theme-toggle-icon-moon {
-    display: none;
-}
-
-[data-theme="light"] .gh-theme-toggle-icon-sun {
-    display: none;
-}
-
-[data-theme="light"] .gh-theme-toggle-icon-moon {
-    display: block;
-}
 
 .gh-head a {
     color: inherit;
@@ -114,6 +60,7 @@
 .gh-head-logo {
     display: block;
     padding: 10px 0;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: 2.2rem;
     line-height: 1.2em;

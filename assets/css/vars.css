@@ -24,16 +24,45 @@
     --space-lg: 4rem;
     --space-xl: 6rem;
 
-    /* Typography - Base */
-    --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'Space Mono', 'Courier Prime', monospace;
+    /* Typography - Font Stacks */
+    --font-display: 'Special Elite', 'Courier Prime', monospace;
+    --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'Space Mono', 'Source Code Pro', monospace;
+    --font-body: var(--font-mono);
+    --font-ui: var(--font-body);
     --font-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     --font-serif: Podkova, Georgia, Times, serif;
     
-    --font-size-base: 1.6rem;
-    --line-height-base: 1.6;
-    --letter-spacing-tight: -0.02em;
-    --letter-spacing-normal: 0;
-    --letter-spacing-wide: 0.05em;
+    /* Typography - Font Sizes (base: 16px = 1rem) */
+    --fs-0: 0.75rem;    /* 12px - micro (badges, labels pequenos) */
+    --fs-1: 0.875rem;   /* 14px - small (meta, captions) */
+    --fs-2: 1rem;       /* 16px - base (body, UI) */
+    --fs-3: 1.125rem;   /* 18px - lead (excerpt, destacado) */
+    --fs-h6: clamp(0.875rem, 0.95vw, 1rem);
+    --fs-h5: clamp(0.95rem, 1.05vw, 1.125rem);
+    --fs-h4: clamp(1rem, 1.1vw, 1.25rem);
+    --fs-h3: clamp(1.05rem, 1.15vw, 1.3rem);
+    --fs-h2: clamp(1.15rem, 1.3vw, 1.5rem);
+    --fs-h1: clamp(1.4rem, 1.8vw, 1.9rem);
+    
+    /* Typography - Legacy (mantido para compatibilidade) */
+    --font-size-base: var(--fs-2);
+    --font-accent: var(--font-display); /* Alias para compatibilidade */
+    
+    /* Typography - Line Heights */
+    --lh-tight: 1.2;      /* Headings */
+    --lh-normal: 1.6;     /* Body, parágrafos */
+    --lh-loose: 1.75;     /* Excerpt, lead */
+    --line-height-base: var(--lh-normal);
+    --line-height-heading: var(--lh-tight);
+    
+    /* Typography - Letter Spacing */
+    --trk-tight: -0.015em;  /* Headings com Special Elite */
+    --trk-normal: 0;        /* Body, UI */
+    --trk-wide: 0.03em;     /* Meta uppercase */
+    --letter-spacing-tight: var(--trk-tight);
+    --letter-spacing-accent: var(--trk-tight);
+    --letter-spacing-normal: var(--trk-normal);
+    --letter-spacing-wide: var(--trk-wide);
 
     /* Font Weights */
     --font-light: 300;
@@ -53,6 +82,21 @@
     --small: 740px;
     --xsmall: 480px;
 
+    /* Custom Settings - Layout (fallbacks) */
+    --layout-width: var(--layout-width, 1220px);
+    --content-width: var(--content-width, 760px);
+    --grid-gap: var(--grid-gap, 24px);
+
+    /* Custom Settings - Cards (fallbacks) */
+    --card-image-ratio: var(--card-image-ratio, 3/2);
+    --card-image-height: var(--card-image-height, 220px);
+    --card-radius: var(--card-radius, 14px);
+    --card-shadow: var(--card-shadow, var(--shadow-sm));
+
+    /* Custom Settings - Post (fallbacks) */
+    --post-feature-ratio: var(--post-feature-ratio, 2/1);
+    --content-media-max-h: 620px;
+
     /* Dracula Theme Colors (mantidos para compatibilidade e uso em acentos) */
     --cyan: #8be9fd;
     --green: #50fa7b;
@@ -63,120 +107,8 @@
     --yellow: #f1fa8c;
 }
 
-/* Semantic Tokens - Dark Theme (default) */
+/* Semantic Tokens - Light Theme (default) */
 :root {
-    /* Backgrounds */
-    --bg: #0b0d10;
-    --bg-elev-1: #151720;
-    --bg-elev-2: #1e2128;
-    --card: #1a1d26;
-    --card-border: rgba(255, 255, 255, 0.08);
-    
-    /* Text */
-    --text-1: #ffffff;
-    --text-2: #e0e0e0;
-    --text-3: #b0b0b0;
-    
-    /* Links */
-    --link: #8be9fd;
-    --link-hover: #50fa7b;
-    
-    /* Accents */
-    --accent: #bd93f9;
-    --accent-2: #ff79c6;
-    
-    /* Code */
-    --code-bg: #1e2128;
-    --code-border: rgba(255, 255, 255, 0.1);
-    --code-text: #f8f8f2;
-    
-    /* UI Elements */
-    --border: rgba(255, 255, 255, 0.1);
-    --border-strong: rgba(255, 255, 255, 0.15);
-    --selection-bg: rgba(139, 233, 253, 0.3);
-    --focus-ring: 0 0 0 2px rgba(139, 233, 253, 0.5);
-    
-    /* Status */
-    --success: var(--green);
-    --error: var(--red);
-    --warning: var(--yellow);
-    
-    /* Font (default to mono) */
-    --font: var(--font-mono);
-}
-
-/* Semantic Tokens - Light Theme */
-@media (prefers-color-scheme: light) {
-    :root:not([data-theme]) {
-        /* Backgrounds */
-        --bg: #ffffff;
-        --bg-elev-1: #f8f9fa;
-        --bg-elev-2: #f1f3f5;
-        --card: #ffffff;
-        --card-border: rgba(0, 0, 0, 0.08);
-        
-        /* Text */
-        --text-1: #1a1a1a;
-        --text-2: #4a4a4a;
-        --text-3: #6a6a6a;
-        
-        /* Links */
-        --link: #0066cc;
-        --link-hover: #0052a3;
-        
-        /* Accents */
-        --accent: #7c3aed;
-        --accent-2: #ec4899;
-        
-        /* Code */
-        --code-bg: #f8f9fa;
-        --code-border: rgba(0, 0, 0, 0.1);
-        --code-text: #1a1a1a;
-        
-        /* UI Elements */
-        --border: rgba(0, 0, 0, 0.1);
-        --border-strong: rgba(0, 0, 0, 0.15);
-        --selection-bg: rgba(0, 102, 204, 0.2);
-        --focus-ring: 0 0 0 2px rgba(0, 102, 204, 0.3);
-    }
-}
-
-/* Manual Theme Override - Dark */
-[data-theme="dark"] {
-    /* Backgrounds */
-    --bg: #0b0d10;
-    --bg-elev-1: #151720;
-    --bg-elev-2: #1e2128;
-    --card: #1a1d26;
-    --card-border: rgba(255, 255, 255, 0.08);
-    
-    /* Text */
-    --text-1: #ffffff;
-    --text-2: #e0e0e0;
-    --text-3: #b0b0b0;
-    
-    /* Links */
-    --link: #8be9fd;
-    --link-hover: #50fa7b;
-    
-    /* Accents */
-    --accent: #bd93f9;
-    --accent-2: #ff79c6;
-    
-    /* Code */
-    --code-bg: #1e2128;
-    --code-border: rgba(255, 255, 255, 0.1);
-    --code-text: #f8f8f2;
-    
-    /* UI Elements */
-    --border: rgba(255, 255, 255, 0.1);
-    --border-strong: rgba(255, 255, 255, 0.15);
-    --selection-bg: rgba(139, 233, 253, 0.3);
-    --focus-ring: 0 0 0 2px rgba(139, 233, 253, 0.5);
-}
-
-/* Manual Theme Override - Light */
-[data-theme="light"] {
     /* Backgrounds */
     --bg: #ffffff;
     --bg-elev-1: #f8f9fa;
@@ -193,9 +125,9 @@
     --link: #0066cc;
     --link-hover: #0052a3;
     
-    /* Accents */
-    --accent: #7c3aed;
-    --accent-2: #ec4899;
+    /* Accents - Light theme uses black */
+    --accent: #000000;
+    --accent-2: #1a1a1a;
     
     /* Code */
     --code-bg: #f8f9fa;
@@ -207,6 +139,14 @@
     --border-strong: rgba(0, 0, 0, 0.15);
     --selection-bg: rgba(0, 102, 204, 0.2);
     --focus-ring: 0 0 0 2px rgba(0, 102, 204, 0.3);
+    
+    /* Status */
+    --success: var(--green);
+    --error: var(--red);
+    --warning: var(--yellow);
+    
+    /* Font (default to mono) */
+    --font: var(--font-body);
 }
 
 /* Legacy Token Mapping (compatibilidade durante transição) */

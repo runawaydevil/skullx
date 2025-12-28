@@ -1,76 +1,87 @@
 {{!< default}}
 
 {{#post}}
-
+<div class="gh-post-wrapper">
     <article class="gh-article {{post_class}}">
         {{#if feature_image}}
-            <div class="gh-post-thumbnail">
-                <img class="cover"
-                     srcset="{{img_url feature_image size="s"}} 300w,
-                        {{img_url feature_image size="m"}} 600w,
-                        {{img_url feature_image size="l"}} 1000w,
-                        {{img_url feature_image size="xl"}} 2000w"
-                     sizes="(max-width: 1000px) 400px, 700px"
-                     src="{{img_url feature_image size="m"}}"
-                     alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                />
-            </div>
+            <figure class="gh-post-feature">
+                <img src="{{img_url feature_image size="xl"}}" 
+                     alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" 
+                     loading="eager">
+                {{#if feature_image_caption}}
+                    <figcaption>{{feature_image_caption}}</figcaption>
+                {{/if}}
+            </figure>
         {{/if}}
 
-        <header class="gh-header gh-canvas">
-                <span class="gh-post-meta">
-                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
-                    <span class="bull">&bull;</span> {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}
-                    <span class="bull">&bull;</span> {{t "Written by"}}
-                    {{#foreach authors}}
-                        <a href="{{url}}">{{name}}</a>{{/foreach}}
-                </span>
-
-            <h1 class="gh-title">{{title}}</h1>
-
+        <header class="gh-post-header">
+            <span class="gh-post-meta">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                <span class="bull">&bull;</span> {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}
+                <span class="bull">&bull;</span> {{t "Written by"}}
+                {{#foreach authors}}
+                    <a href="{{url}}">{{name}}</a>{{/foreach}}
+            </span>
+            <h1 class="gh-post-title">{{title}}</h1>
             {{#if custom_excerpt}}
-                <p class="gh-excerpt">{{custom_excerpt}}</p>
+                <p class="gh-post-excerpt">{{custom_excerpt}}</p>
             {{/if}}
-
         </header>
-        <div class="gh-content gh-canvas">
+
+        <section class="post-content gh-content">
             {{content}}
+        </section>
 
-        </div>
-
-        <p class="gh-excerpt">
-            {{tags prefix=(t "Tags: ")}}
-        </p>
-
+        {{#if tags}}
+            <p class="gh-post-tags">
+                {{tags prefix=(t "Tags: ")}}
+            </p>
+        {{/if}}
     </article>
 
-    <footer class="gh-footer gh-canvas">
-        {{#if comments}}
-            <section class="gh-post-comments">
-                <h2>
-                    {{t "Комментарии"}}
-                    <small>({{comment_count singular="" plural="" empty="0"}})</small>
-                </h2>
-                {{comments mode="dark" count=false title="" }}
+    <aside class="gh-sidebar-post">
+        {{#if @custom.show_author_card}}
+            {{> "sidebar-author"}}
+        {{/if}}
+        
+        {{> "sidebar-newsletter"}}
+        
+        {{#if @custom.show_toc}}
+            <section class="table-of-content widget">
+                <h4>{{t "Table of contents"}}</h4>
+                <div class="gh-table-of-content toc"></div>
             </section>
         {{/if}}
-    </footer>
-
-    <aside class="gh-readmore">
-        <div class="gh-readmore-inner gh-container">
-            <div class="gh-readmore-next">
-                {{#next_post}}
-                    <a href="{{url}}">{{> "icons/arrow-left"}}
-                        <h4>{{title}}</h4>
-                    </a>{{/next_post}}
-            </div>
-            <div class="gh-readmore-prev">
-                {{#prev_post}}
-                    <a href="{{url}}">
-                        <h4>{{title}}</h4> {{> "icons/arrow-right"}}
-                    </a>{{/prev_post}}
-            </div>
-        </div>
     </aside>
+</div>
+
+<footer class="gh-footer gh-canvas">
+    {{#if comments}}
+        <section class="gh-post-comments">
+            <h2>
+                {{t "Comments"}}
+                <small>({{comment_count singular="" plural="" empty="0"}})</small>
+            </h2>
+            {{comments mode="light" count=false title="" }}
+        </section>
+    {{/if}}
+</footer>
+
+<aside class="gh-readmore">
+    <div class="gh-readmore-inner gh-container">
+        <div class="gh-readmore-next">
+            {{#next_post}}
+                <a href="{{url}}">{{> "icons/arrow-left"}}
+                    <h4>{{title}}</h4>
+                </a>{{/next_post}}
+        </div>
+        <div class="gh-readmore-prev">
+            {{#prev_post}}
+                <a href="{{url}}">
+                    <h4>{{title}}</h4> {{> "icons/arrow-right"}}
+                </a>{{/prev_post}}
+        </div>
+    </div>
+</aside>
 
 {{/post}}

@@ -1,0 +1,206 @@
+/* Ghost Content (Editor/Koenig)
+/* ---------------------------------------------------------- */
+
+.gh-content {
+    max-width: var(--content-width, 760px);
+    margin: 0 auto;
+    font-size: var(--fs-2);
+    line-height: var(--lh-normal);
+    color: var(--text-1);
+    font-family: var(--font-body);
+}
+
+/* Sobrescrever para posts - alinhar à esquerda */
+.post-content.gh-content {
+    max-width: 72ch !important;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+}
+
+.gh-content > * + * {
+    margin-top: 1.5em;
+}
+
+.gh-content p {
+    margin: 0 0 1.5em;
+    color: var(--text-2);
+    max-width: 65ch;
+}
+
+.gh-content p:last-child {
+    margin-bottom: 0;
+}
+
+.gh-content h2 {
+    margin: 2em 0 0.75em;
+    font-size: var(--fs-h2);
+    font-family: var(--font-display);
+    line-height: var(--lh-tight);
+    color: var(--text-1);
+    letter-spacing: var(--trk-tight);
+    font-weight: var(--font-semibold);
+}
+
+.gh-content h3 {
+    margin: 1.75em 0 0.625em;
+    font-size: var(--fs-h3);
+    font-family: var(--font-body);
+    line-height: var(--lh-tight);
+    color: var(--text-1);
+    font-weight: var(--font-medium);
+}
+
+.gh-content h4 {
+    margin: 1.5em 0 0.5em;
+    font-size: var(--fs-h4);
+    font-family: var(--font-body);
+    line-height: var(--lh-tight);
+    color: var(--text-1);
+    font-weight: var(--font-medium);
+}
+
+/* Links */
+.gh-content a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+}
+
+.gh-content a:hover {
+    color: var(--link-hover);
+}
+
+/* Figuras e Imagens */
+.gh-content figure {
+    margin: 2em 0;
+}
+
+.gh-content figcaption {
+    margin-top: 0.5rem;
+    font-size: var(--fs-1);
+    color: var(--text-3);
+    text-align: center;
+    font-style: italic;
+}
+
+/* Imagens dentro do texto (corrige retratos gigantes) */
+.gh-content figure img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: var(--content-media-max-h, 620px);
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--card-radius, 14px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Wide/Full (Koenig) */
+.gh-content figure.kg-width-wide {
+    width: min(1000px, 100%);
+    max-width: 1000px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.gh-content figure.kg-width-full {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-right: -50vw;
+}
+
+.gh-content figure.kg-width-full img {
+    max-height: 75vh;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+}
+
+/* Separadores */
+.gh-content hr {
+    margin: 2em 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+}
+
+/* Blockquotes */
+.gh-content blockquote {
+    margin: 1.5em 0;
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--border-strong);
+    background: var(--bg-elev-1);
+    border-radius: var(--radius-sm);
+    color: var(--text-2);
+    font-style: italic;
+}
+
+.gh-content blockquote p {
+    margin-bottom: 0.75em;
+}
+
+.gh-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Code */
+.gh-content pre {
+    margin: 1.5em 0;
+    padding: 1rem;
+    border: 1px solid var(--code-border);
+    background: var(--code-bg);
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+}
+
+.gh-content code {
+    font-family: var(--font-mono);
+    font-size: var(--fs-1);
+}
+
+.gh-content :not(pre) code {
+    padding: 0.15em 0.4em;
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: var(--radius-sm);
+    color: var(--code-text);
+}
+
+/* Listas */
+.gh-content ul,
+.gh-content ol {
+    margin: 1.5em 0;
+    padding-left: 1.5em;
+}
+
+.gh-content li {
+    margin: 0.5em 0;
+}
+
+/* Tables */
+.gh-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+}
+
+.gh-content th,
+.gh-content td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+.gh-content th {
+    font-weight: var(--font-semibold);
+    background: var(--bg-elev-1);
+}
+

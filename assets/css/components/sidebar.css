@@ -1,69 +1,137 @@
-.gh-sidebar .widget {
+/* Widgets - mesmo estilo para home, page e posts */
+.gh-sidebar .widget,
+.sidebar .widget,
+.gh-sidebar-post .widget {
     background: var(--card);
     border: 1px solid var(--card-border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
-    padding: 30px;
-    margin-bottom: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 2.5vmin 1vmin;
+    grid-template-columns: auto 1fr;
+    gap: 16px 12px;
 }
 
-.gh-sidebar a {
+/* Links - mesmo estilo para home e page */
+.gh-sidebar a,
+.sidebar a {
+    text-decoration: none;
+    color: var(--text-1) !important;
+}
+
+.gh-sidebar a:hover,
+.sidebar a:hover {
+    color: var(--text-2) !important;
+}
+
+/* Social Icons - Premium Style (aplicado em todos os contextos) */
+.gh-sidebar .social,
+.gh-sidebar-post .author .social,
+.sidebar .author .social {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gh-sidebar .social a,
+.gh-sidebar-post .author .social a,
+.sidebar .author .social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.65) !important;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: transform 0.12s ease, color 0.12s ease, background 0.12s ease;
     text-decoration: none;
 }
 
-.gh-sidebar .social {
-    margin-top: 15px;
+.gh-sidebar .social a:hover,
+.gh-sidebar-post .author .social a:hover,
+.sidebar .author .social a:hover {
+    transform: translateY(-1px);
+    color: rgba(0, 0, 0, 0.92) !important;
+    background: rgba(0, 0, 0, 0.06);
 }
 
-.gh-sidebar .social a {
+/* Ícones sempre com tamanho fixo de 16px e cor preta */
+.gh-sidebar .social a .icon,
+.gh-sidebar .social a svg,
+.gh-sidebar-post .author .social a .icon,
+.gh-sidebar-post .author .social a svg,
+.sidebar .author .social a .icon,
+.sidebar .author .social a svg {
+    width: 16px !important;
+    height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
     display: block;
-    float: left;
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+    color: rgba(0, 0, 0, 0.65) !important;
+    transition: fill 0.12s ease, stroke 0.12s ease, color 0.12s ease;
 }
 
-.gh-sidebar .social a:last-child {
-    margin-right: 0;
+.gh-sidebar .social a:hover .icon,
+.gh-sidebar .social a:hover svg,
+.gh-sidebar-post .author .social a:hover .icon,
+.gh-sidebar-post .author .social a:hover svg,
+.sidebar .author .social a:hover .icon,
+.sidebar .author .social a:hover svg {
+    fill: rgba(0, 0, 0, 0.92) !important;
+    stroke: rgba(0, 0, 0, 0.92) !important;
+    color: rgba(0, 0, 0, 0.92) !important;
 }
 
-.gh-sidebar .social a svg {
-    width: 100%;
-    height: 100%;
-    fill: var(--text-2);
-    transition: fill 0.2s ease;
+/* Garantir que paths dentro dos SVGs também fiquem pretos */
+.gh-sidebar .social a svg path,
+.gh-sidebar-post .author .social a svg path,
+.sidebar .author .social a svg path {
+    fill: currentColor !important;
+    stroke: currentColor !important;
 }
 
-.gh-sidebar .social a svg path {
-    stroke: var(--text-2);
-    transition: stroke 0.2s ease;
+/* Legacy support - garantir que SVGs sem class também fiquem pequenos */
+.gh-sidebar .social a svg:not(.icon),
+.gh-sidebar-post .author .social a svg:not(.icon),
+.sidebar .author .social a svg:not(.icon) {
+    width: 16px !important;
+    height: 16px !important;
+    fill: currentColor !important;
+    transition: fill 0.12s ease;
 }
 
-.gh-sidebar .social a:hover svg {
-    fill: var(--link-hover);
-}
-
-.gh-sidebar .social a:hover svg path {
-    stroke: var(--link-hover);
+/* Author widget - aplicar em todos os contextos */
+.author.widget,
+.gh-sidebar-post .author.widget,
+.sidebar .author.widget {
+    grid-template-columns: 1fr;
+    text-align: center;
 }
 
 .author.widget .avatar {
-    width: 90px;
-    height: 90px;
-    margin-right: 20px;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    grid-column: 1/-1;
 }
 
 .author.widget .avatar .thumb {
     display: block;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid var(--accent);
+    border: 2px solid var(--accent);
     position: relative;
     z-index: 1;
-    min-height: 90px;
+    width: 64px;
+    height: 64px;
 }
 
 .author.widget .avatar .image {
@@ -78,11 +146,49 @@
     background-size: cover !important;
 }
 
-.author.widget h1, h2, h3, h4, p,
+.author.widget h1, h2, h3, h4,
 .gh-sidebar .gh-card-content.no-image,
 .gh-sidebar .tag-cloud,
 .gh-sidebar .gh-table-of-content {
     grid-column: 1/-1;
+}
+
+.author.widget p {
+    grid-column: 1/-1;
+    margin-top: 8px;
+    font-size: var(--fs-1);
+    line-height: var(--lh-normal);
+    color: var(--text-2);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: calc(var(--fs-1) * var(--lh-normal) * 2);
+}
+
+.author.widget .info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    grid-column: 1/-1;
+    text-align: center;
+}
+
+.author.widget .author-name {
+    margin: 0;
+    font-size: var(--fs-h5);
+    line-height: var(--lh-tight);
+}
+
+.author.widget .social {
+    grid-column: 1/-1;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .gh-sidebar .gh-card-content {
@@ -97,50 +203,162 @@
     color: var(--link-hover);
 }
 
+.author.widget .author-name a {
+    color: var(--text-1);
+    text-decoration: none;
+}
 
-.gh-sidebar .gh-card-title {
-    font-size: 2rem;
-    text-align: left;
-    font-weight: var(--font-semibold);
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
+.author.widget .author-name a:hover {
+    text-decoration: underline;
     color: var(--text-1);
 }
 
+
+.gh-sidebar .gh-card-title {
+    font-size: var(--fs-h4);
+    font-family: var(--font-body);
+    text-align: left;
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.5rem;
+    line-height: var(--lh-tight);
+    color: var(--text-1);
+    letter-spacing: var(--trk-normal);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: calc(var(--fs-h4) * var(--lh-tight) * 2);
+}
+
 .gh-sidebar .gh-card-meta {
+    font-size: var(--fs-1);
     text-align: left;
 }
 
 .gh-sidebar .gh-card-thumbnail {
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     padding: 0;
     margin: 5px 0 0;
 }
 
+/* Tags - mesmo estilo da page sidebar */
+.gh-sidebar .tag-cloud a,
 .gh-sidebar .tags a {
-    background: var(--accent);
-    color: var(--text-1);
+    background: var(--accent) !important;
+    color: var(--bg) !important;
     border-radius: var(--radius);
-    float: left;
-    display: block;
-    margin-top: 5px;
+    display: inline-block;
+    margin: 5px 5px 0 0;
     padding: 3px 15px;
-    font-size: 1.2rem;
-    transition: background 0.2s ease;
+    font-size: var(--fs-1);
+    font-family: var(--font-body);
+    transition: background 0.2s ease, color 0.2s ease;
+    text-decoration: none;
 }
 
+.gh-sidebar .tag-cloud a:hover,
 .gh-sidebar .tags a:hover {
-    background: var(--accent-2);
-    color: var(--text-1);
+    background: var(--accent-2) !important;
+    color: var(--bg) !important;
 }
 
 .widget.table-of-content {
     display: none;
-    position: sticky;
-    top: 50px;
-    z-index: 1000;
+    position: relative;
+    z-index: 1;
+}
+
+.newsletter.widget,
+.search.widget {
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.newsletter.widget h4 {
+    grid-column: 1/-1;
+    margin-bottom: 0.75rem;
+}
+
+.newsletter.widget p {
+    grid-column: 1/-1;
+    margin-bottom: 1rem;
+    font-size: var(--fs-1);
+    color: var(--text-2);
+    line-height: var(--lh-normal);
+}
+
+.newsletter.widget .gh-newsletter-form {
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.newsletter.widget .gh-newsletter-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: var(--fs-2);
+    background: var(--bg);
+    color: var(--text-1);
+    transition: border-color 0.2s ease;
+}
+
+.newsletter.widget .gh-newsletter-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+}
+
+.newsletter.widget .gh-newsletter-input::placeholder {
+    color: var(--text-3);
+}
+
+.newsletter.widget .gh-button {
+    width: 100%;
+    margin-top: 0;
+}
+
+.newsletter.widget .gh-button-loader {
+    display: none;
+}
+
+.newsletter.widget form[data-members-form].loading .gh-button-content {
+    display: none;
+}
+
+.newsletter.widget form[data-members-form].loading .gh-button-loader {
+    display: inline-block;
+}
+
+.newsletter.widget .message-success,
+.newsletter.widget .message-error {
+    display: none;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    font-size: var(--fs-1);
+    line-height: var(--lh-normal);
+}
+
+.newsletter.widget .message-success {
+    background: var(--success);
+    color: var(--bg);
+}
+
+.newsletter.widget .message-error {
+    background: var(--error);
+    color: var(--bg);
+}
+
+.newsletter.widget form[data-members-form].success .message-success,
+.newsletter.widget form[data-members-form].error .message-error {
+    display: block;
 }
 
 @media (max-width: 700px) {
@@ -148,4 +366,41 @@
         position: relative;
         top: 0;
     }
+}
+
+/* Safety Rules - Prevenir ícones/imagens gigantes em cards */
+.gh-sidebar .widget img,
+.gh-sidebar .widget svg,
+.gh-sidebar-post .widget img,
+.gh-sidebar-post .widget svg,
+.sidebar .widget img,
+.sidebar .widget svg {
+    max-width: 100%;
+}
+
+/* Forçar tamanho pequeno e cor preta para ícones sociais em TODOS os contextos */
+.gh-sidebar .social svg,
+.gh-sidebar .social img,
+.gh-sidebar-post .author .social svg,
+.gh-sidebar-post .author .social img,
+.sidebar .author .social svg,
+.sidebar .author .social img,
+.author.widget .social svg,
+.author.widget .social img {
+    width: 16px !important;
+    height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+    color: rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Garantir que paths dentro dos SVGs também fiquem pretos */
+.gh-sidebar .social svg path,
+.gh-sidebar-post .author .social svg path,
+.sidebar .author .social svg path,
+.author.widget .social svg path {
+    fill: currentColor !important;
+    stroke: currentColor !important;
 }

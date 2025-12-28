@@ -1,33 +1,38 @@
 # SkullX - Ghost Theme
 
-Dark purple theme for Ghost CMS. Mix of starter theme, dracula colors and custom ideas.
+A minimal, editorial-style theme for Ghost CMS 6.0+. Built with a focus on readability and clean typography.
 
-**Version:** 0.01  
-**Developer:** [runawaydevil](https://pablo.space)  
+**Version:** 0.0.1  
+**Developer:** [runawaydevil](https://github.com/runawaydevil)  
 **Ghost Version:** 6.0+  
 **Repository:** [runawaydevil/skullx](https://github.com/runawaydevil/skullx)
 
+## Overview
+
+SkullX is a Ghost theme designed for content-focused publications. It features a clean editorial layout with optimized reading width, responsive sidebar, and support for Ghost's native features including members, subscriptions, and multi-language content.
+
+## Screenshot
+
+![](https://shot.1208.pro/uploads/IhJCFNhGE6n9uvBcPvT85LX1o3gNLq8L86Pnf9mK.png)
+
 ## Features
 
-- 🎨 Dark purple theme with dracula-inspired colors
-- 📱 Fully responsive design
-- 📑 Sidebar with author info, latest posts, and tags cloud
-- 📖 Automatic table of contents (TocBot) for posts
-- 💻 Syntax highlighting with Highlight.js
-- 🔍 Search functionality
-- 👥 Members/Subscriptions support
-- 🌐 Multi-language support (i18n)
-
-## Screenshots
-
-![](https://shot.1208.pro/uploads/r3LLf8Eow9DsIgWniWjYvTBJU3BndOd1HwEcQRak.png)
+- Editorial-style layout with optimized reading width (72ch)
+- Fully responsive design for mobile, tablet, and desktop
+- Sidebar with author information, latest posts, and tag cloud
+- Automatic table of contents (TocBot) for posts
+- Syntax highlighting with Highlight.js
+- Search functionality
+- Members and subscriptions support
+- Multi-language support (i18n)
+- Customizable theme settings via Ghost Admin
 
 ## Installation
 
 ### Via Ghost Admin
 
 1. Download the latest release from [GitHub Releases](https://github.com/runawaydevil/skullx/releases)
-2. Go to **Settings** → **Design** → **Change theme**
+2. Navigate to **Settings** → **Design** → **Change theme**
 3. Click **Upload theme** and select the downloaded ZIP file
 4. Activate the theme
 
@@ -38,7 +43,7 @@ cd content/themes
 git clone https://github.com/runawaydevil/skullx.git
 ```
 
-Then restart Ghost and select the theme from **Settings** → **Design**.
+Restart Ghost and select the theme from **Settings** → **Design**.
 
 ## Development
 
@@ -46,7 +51,7 @@ Then restart Ghost and select the theme from **Settings** → **Design**.
 
 - Node.js v22 or higher (required for Ghost 6.0+)
 - Ghost CMS 6.0 or higher
-- npm or pnpm
+- npm or pnpm package manager
 
 ### Setup
 
@@ -100,9 +105,9 @@ npm run test
 
 ### Sidebar
 
-The sidebar includes:
+The sidebar includes the following components:
 - Table of contents (TocBot) - appears on posts
-- Author information
+- Author information with social links
 - Latest posts (5 most recent)
 - Tags cloud (15 most used tags)
 
@@ -110,7 +115,7 @@ You can customize the sidebar by editing `partials/sidebar.hbs`.
 
 ### Additional Social Links
 
-To add custom social links in the sidebar, go to **Settings** → **Code Injection** → **Site Header** and add:
+To add custom social links in the sidebar, navigate to **Settings** → **Code Injection** → **Site Header** and add:
 
 ```html
 <script>
@@ -155,6 +160,17 @@ The theme includes customizable settings accessible via **Settings** → **Desig
 
 - **Font**: Choose between Monospace, Serif, or Sans-serif
 - **Layout**: Full-width, 1220px, or 960px container width
+- **Content Width**: 720px, 760px, or 820px
+- **Grid Gap**: 20px, 24px, or 28px
+- **Card Image Ratio**: 3/2, 4/3, or 16/9
+- **Card Image Height**: 180px, 220px, or 260px
+- **Card Radius**: 12px, 14px, or 16px
+- **Card Shadow**: none, soft, or medium
+- **Post Feature Ratio**: 16/9, 2/1, or none
+- **Show Newsletter**: Enable/disable newsletter widget
+- **Show Tags**: Enable/disable tags widget
+- **Show TOC**: Enable/disable table of contents
+- **Show Author Card**: Enable/disable author card
 
 ## Theme Structure
 
@@ -194,11 +210,11 @@ You can create custom templates for specific pages by adding the slug to the tem
 
 ## Browser Support
 
-The theme supports all modern browsers as defined by the `browserslist` configuration in `package.json` (defaults).
+The theme supports all modern browsers as defined by the `browserslist` configuration in `package.json` (defaults to current browser versions).
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome. Please follow these steps:
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -210,12 +226,13 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This theme is released under the [MIT License](LICENSE).
 
-Copyright (c) 2024 [runawaydevil](https://pablo.space)
+Copyright (c) 2024 [runawaydevil](https://github.com/runawaydevil)
 
 Copyright (c) 2013-2024 Ghost Foundation - Released under the [MIT License](LICENSE).
 
 ## Credits
 
+- Based on [PurpleDark](https://github.com/rame0/PurpleDark) theme by [rame0](https://github.com/rame0)
 - Based on the Ghost Starter theme
 - Icons by [Icons8](https://icons8.com)
 - Syntax highlighting by [Highlight.js](https://highlightjs.org/)
@@ -224,7 +241,3 @@ Copyright (c) 2013-2024 Ghost Foundation - Released under the [MIT License](LICE
 ## Support
 
 For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/runawaydevil/skullx/issues).
-
----
-
-**Made with ❤️ by [runawaydevil](https://pablo.space)**

@@ -9,7 +9,7 @@
     border: 0;
     border-radius: var(--radius);
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: var(--fs-2);
     font-weight: var(--font-normal);
     line-height: var(--height);
     text-align: center;
@@ -63,13 +63,15 @@
 }
 
 .gh-button.gh-button-primary {
-    color: var(--text-1);
+    font-family: var(--font-display);
     background-color: var(--accent);
     border-color: var(--accent);
+    /* Text color: black in dark theme (white bg), white in light theme (black bg) */
+    color: var(--bg);
 }
 
 .gh-button.gh-button-primary:hover {
     background-color: var(--accent-2);
     border-color: var(--accent-2);
-    color: var(--text-1);
+    color: var(--bg);
 }

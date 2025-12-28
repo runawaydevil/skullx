@@ -1,7 +1,7 @@
 {
     "name": "skullx",
     "description": "SkullX - Dark purple Ghost theme with dracula colors and modern features.",
-    "version": "0.1.0",
+    "version": "0.0.1",
     "engines": {
         "ghost": ">=6.0.0"
     },
@@ -13,7 +13,7 @@
     "scripts": {
         "dev": "rollup -c --environment BUILD:development -w",
         "build": "rollup -c --environment BUILD:production",
-        "zip": "pnpm run build && bestzip skullx.zip assets/* partials/* members/* locales/* *.hbs package.json",
+        "zip": "npm run build && node build-zip.js",
         "test": "gscan .",
         "pretest": "pnpm run build"
     },
@@ -110,6 +110,113 @@
                     "960px"
                 ],
                 "default": "1220px"
+            },
+            "content_width": {
+                "type": "select",
+                "options": [
+                    "720",
+                    "760",
+                    "820"
+                ],
+                "default": "760"
+            },
+            "grid_gap": {
+                "type": "select",
+                "options": [
+                    "20",
+                    "24",
+                    "28"
+                ],
+                "default": "24"
+            },
+            "card_image_ratio": {
+                "type": "select",
+                "options": [
+                    "3/2",
+                    "4/3",
+                    "16/9"
+                ],
+                "default": "3/2"
+            },
+            "card_image_height": {
+                "type": "select",
+                "options": [
+                    "180",
+                    "220",
+                    "260"
+                ],
+                "default": "220"
+            },
+            "card_radius": {
+                "type": "select",
+                "options": [
+                    "12",
+                    "14",
+                    "16"
+                ],
+                "default": "14"
+            },
+            "card_shadow": {
+                "type": "select",
+                "options": [
+                    "none",
+                    "soft",
+                    "medium"
+                ],
+                "default": "soft"
+            },
+            "show_newsletter": {
+                "type": "boolean",
+                "default": true
+            },
+            "show_tags": {
+                "type": "boolean",
+                "default": true
+            },
+            "show_toc": {
+                "type": "boolean",
+                "default": true
+            },
+            "show_author_card": {
+                "type": "boolean",
+                "default": true
+            },
+            "post_feature_ratio": {
+                "type": "select",
+                "options": [
+                    "16/9",
+                    "2/1",
+                    "none"
+                ],
+                "default": "2/1"
+            },
+            "author_name_override": {
+                "type": "text",
+                "default": ""
+            },
+            "author_bio_override": {
+                "type": "text",
+                "default": ""
+            },
+            "author_avatar_url": {
+                "type": "text",
+                "default": ""
+            },
+            "author_twitter_url": {
+                "type": "text",
+                "default": ""
+            },
+            "author_facebook_url": {
+                "type": "text",
+                "default": ""
+            },
+            "author_instagram_url": {
+                "type": "text",
+                "default": ""
+            },
+            "author_github_url": {
+                "type": "text",
+                "default": ""
             }
         }
     },

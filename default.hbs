@@ -5,27 +5,13 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    {{!-- Anti-FOUC: Apply theme before CSS loads --}}
+    {{!-- Set light theme as default --}}
     <script>
-        // #region agent log
-        console.log('[DEBUG] Anti-FOUC script starting');
-        // #endregion
         (function() {
             try {
-                // #region agent log
-                console.log('[DEBUG] Getting theme from localStorage', {hasLocalStorage: typeof localStorage !== 'undefined'});
-                // #endregion
-                const theme = localStorage.getItem('theme') || 
-                    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-                // #region agent log
-                console.log('[DEBUG] Setting data-theme attribute', {theme: theme});
-                // #endregion
-                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-theme', 'light');
             } catch(e) {
-                // #region agent log
-                console.error('[DEBUG] Error in anti-FOUC script', {error: e.message, stack: e.stack});
-                // #endregion
-                console.error('Theme script error:', e);
+                // Silent fail
             }
         })();
     </script>
@@ -38,7 +24,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         {{#match @custom.font "Monospace"}}
             <link
-                href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
+                href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
                 rel="stylesheet">
         {{else}}
             {{#match @custom.font "Sans-serif"}}
@@ -50,9 +36,9 @@
                     <link href="https://fonts.googleapis.com/css2?family=Podkova:wght@400;600&display=swap"
                           rel="stylesheet">
                 {{else}}
-                    {{!-- Default: Monospace (Machine Writer) --}}
+                    {{!-- Default: Special Elite (accent) + JetBrains Mono (body) --}}
                     <link
-                        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
+                        href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
                         rel="stylesheet">
                 {{/match}}
             {{/match}}
@@ -60,22 +46,6 @@
     {{/if}}
 
     <link rel="stylesheet" href="{{asset "built/index.css"}}"/>
-    <script>
-        // #region agent log
-        (function() {
-            const link = document.querySelector('link[href*="built/index.css"]');
-            console.log('[DEBUG] CSS link element check', {linkExists: !!link, href: link ? link.href : 'none'});
-            if(link) {
-                link.onerror = function() {
-                    console.error('[DEBUG] CSS failed to load', {href: link.href});
-                };
-                link.onload = function() {
-                    console.log('[DEBUG] CSS loaded successfully', {href: link.href});
-                };
-            }
-        })();
-        // #endregion
-    </script>
 
     <title>{{meta_title}}</title>
     {{ghost_head}}
@@ -95,24 +65,30 @@
             {{/if}}
 
             {{#match @custom.layout "Full-width"}}--container-width: 100%;{{/match}}
-            {{#match @custom.layout "1220px"}}--container-width: 1220px;{{/match}}
-            {{#match @custom.layout "960px"}}--container-width: 960px;{{/match}}
+            {{#match @custom.layout "1220px"}}--container-width: 1220px;--layout-width: 1220px;{{/match}}
+            {{#match @custom.layout "960px"}}--container-width: 960px;--layout-width: 960px;{{/match}}
+
+            /* Layout */
+            {{#match @custom.content_width "720"}}--content-width: 720px;{{/match}}
+            {{#match @custom.content_width "760"}}--content-width: 760px;{{/match}}
+            {{#match @custom.content_width "820"}}--content-width: 820px;{{/match}}
+            --grid-gap: {{@custom.grid_gap}}px;
+
+            /* Cards */
+            --card-image-ratio: {{@custom.card_image_ratio}};
+            --card-image-height: {{@custom.card_image_height}}px;
+            --card-radius: {{@custom.card_radius}}px;
+            {{#match @custom.card_shadow "none"}}--card-shadow: none;{{/match}}
+            {{#match @custom.card_shadow "soft"}}--card-shadow: var(--shadow-sm);{{/match}}
+            {{#match @custom.card_shadow "medium"}}--card-shadow: var(--shadow-md);{{/match}}
+
+            /* Post */
+            {{#match @custom.post_feature_ratio "16/9"}}--post-feature-ratio: 16/9;{{/match}}
+            {{#match @custom.post_feature_ratio "2/1"}}--post-feature-ratio: 2/1;{{/match}}
+            {{#match @custom.post_feature_ratio "none"}}--post-feature-ratio: none;{{/match}}
         }
     </style>
     <script src="{{asset "built/index.js"}}" defer></script>
-    <script>
-        // #region agent log
-        window.addEventListener('DOMContentLoaded', function() {
-            const script = document.querySelector('script[src*="built/index.js"]');
-            console.log('[DEBUG] JS script element check', {scriptExists: !!script, src: script ? script.src : 'none'});
-            if(script) {
-                script.onerror = function() {
-                    console.error('[DEBUG] JS failed to load', {src: script.src});
-                };
-            }
-        });
-        // #endregion
-    </script>
 </head>
 <body class="{{body_class}}">
 <div class="gh-viewport">
@@ -140,18 +116,9 @@
             <div class="gh-head-actions">
                 <div class="gh-head-actions-list">
                     {{search}}
-                    <button class="gh-theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
-                        <svg class="gh-theme-toggle-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class="gh-theme-toggle-icon-sun" d="M10 3V1M10 19V17M17 10H19M1 10H3M15.657 4.343L16.778 3.222M3.222 16.778L4.343 15.657M15.657 15.657L16.778 16.778M3.222 3.222L4.343 4.343M10 14C11.6569 14 13 12.6569 13 11C13 9.34315 11.6569 8 10 8C8.34315 8 7 9.34315 7 11C7 12.6569 8.34315 14 10 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path class="gh-theme-toggle-icon-moon" d="M17.293 13.293C16.3785 14.2075 15.2348 14.8616 13.9844 15.1933C12.734 15.525 11.4153 15.5232 10.1659 15.1881C8.9165 14.853 7.77731 14.1951 6.86384 13.2777C5.95037 12.3603 5.29326 11.2142 4.95911 9.96601C4.62496 8.71779 4.62514 7.39912 4.95949 6.15096C5.29384 4.9028 5.94999 3.75669 6.86346 2.83922C7.77693 1.92175 8.91611 1.26387 10.1655 0.928736C11.4149 0.593603 12.7336 0.591828 13.984 0.923478C15.2344 1.25513 16.3781 1.90924 17.2926 2.82373C16.3785 1.90924 15.2348 1.25513 13.9844 0.923478C12.734 0.591828 11.4153 0.593603 10.1659 0.928736C8.9165 1.26387 7.77731 1.92175 6.86384 2.83922C5.95037 3.75669 5.29326 4.9028 4.95911 6.15096C4.62496 7.39912 4.62514 8.71779 4.95949 9.96601C5.29384 11.2142 5.94999 12.3603 6.86346 13.2777C7.77693 14.1951 8.91611 14.853 10.1655 15.1881C11.4149 15.5232 12.7336 15.525 13.984 15.1933C15.2344 14.8616 16.3781 14.2075 17.2926 13.293" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
                     {{#if @site.members_enabled}}
                         {{#if @member}}
                             <a class="gh-button" data-portal="account" href="#">{{t "Account"}}</a>
-                        {{else}}
-                            <a class="gh-button" data-portal="signin" href="#">{{t "Sign in"}}</a>
-                            <a class="gh-button gh-button-primary" data-portal="signup" href="#">{{t "Sign up"}}</a>
                         {{/if}}
                     {{/if}}
                 </div>
@@ -166,7 +133,10 @@
                 {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
             </div>
 
-            {{> "sidebar"}}
+            {{! Sidebar global APENAS em listagens. Em post/page existe sidebar própria }}
+            {{#is "home,index,tag,author"}}
+                {{> "sidebar"}}
+            {{/is}}
         </div>
     </main>
 
@@ -177,7 +147,7 @@
             </div>
             <div class="gh-foot-meta">
                 {{t "Designed by"}}
-                <a href="https://pablo.space">runawaydevil</a>
+                <a href="https://github.com/runawaydevil/skullx">runawaydevil</a>
             </div>
         </div>
     </footer>

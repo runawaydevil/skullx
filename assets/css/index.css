@@ -14,6 +14,9 @@ production stylesheet in assets/built/screen.css using: npm run dev
 @import "components/forms.css";
 @import "components/buttons.css";
 @import "components/sidebar.css";
+@import "components/post-content.css";
+@import "components/page.css";
+@import "components/gh-content.css";
 
 /* Ghost components */
 @import "ghost/header.css";
@@ -27,7 +30,6 @@ production stylesheet in assets/built/screen.css using: npm run dev
 @import "ghost/comments.css";
 
 /* Tocbot */
-/*@import "tocbot/src/scss/tocbot.scss";*/
 @import "components/tocbot.css";
 
 
@@ -51,7 +53,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /*background: var(--color-bg);*/
 }
 
 
@@ -64,10 +65,8 @@ body {
 
 .gh-postfeed {
     display: grid;
-    /*grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));*/
     grid-template-columns: 1fr;
     gap: 3.5vmin 2vmin;
-    /*padding: 8vmin 0;*/
 }
 
 
@@ -78,15 +77,143 @@ body {
 }
 
 .gh-container.body {
-    /*padding: 0 4vmin;*/
-    grid-gap: 4.8vmin 4vmin;
     display: grid;
-    /*gap: 4.8vmin 4vmin;*/
-    gap: 2vmin;
-    grid-template-columns: 5fr 2fr;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 28px;
+    align-items: start;
 }
 
-.gh-article, .gh-card, .gh-footer {
+/* Evita "3 colunas" (grid aninhado) em post/page */
+.post-template .gh-container.body,
+.page-template .gh-container.body {
+    grid-template-columns: 1fr !important;
+}
+
+/* Garantir que a sidebar global não ocupe espaço caso exista no DOM */
+.post-template .gh-sidebar,
+.page-template .gh-sidebar {
+    display: none !important;
+}
+
+.gh-post-wrapper {
+    max-width: var(--layout-width, 1220px);
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 28px;
+    align-items: start;
+}
+
+.gh-post-header {
+    max-width: 72ch;
+    margin: 0 0 1.5rem;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    text-align: left;
+    margin-left: 0;
+}
+
+.gh-post-title {
+    margin: 0 0 0.75rem;
+    font-size: var(--fs-h1);
+    font-family: var(--font-display);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--trk-tight);
+    color: var(--text-1);
+    font-weight: var(--font-semibold);
+    text-align: left;
+}
+
+.gh-post-meta {
+    font-size: var(--fs-0);
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: var(--trk-wide);
+    text-align: left !important;
+    display: block;
+}
+
+.gh-post-meta a {
+    color: var(--text-1) !important;
+    text-decoration: none;
+}
+
+.gh-post-meta a:hover {
+    color: var(--text-1) !important;
+    text-decoration: underline;
+}
+
+.gh-post-excerpt {
+    margin: 0 0 3.5rem;
+    font-size: var(--fs-3);
+    line-height: var(--lh-loose);
+    color: var(--text-2);
+    text-align: left !important;
+}
+
+.gh-post-tags {
+    max-width: var(--content-width, 760px);
+    margin: 2rem auto 0;
+    font-size: var(--fs-1);
+    color: var(--text-2);
+    text-align: center;
+}
+
+.gh-post-tags a {
+    color: var(--text-1) !important;
+    text-decoration: none;
+}
+
+.gh-post-tags a:hover {
+    color: var(--text-1) !important;
+    text-decoration: underline;
+}
+
+.gh-post-feature {
+    margin: 1.5rem 0 0;
+    max-width: 72ch;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    margin-left: 0;
+}
+
+.gh-post-feature img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: var(--card-radius, 14px);
+    box-shadow: var(--shadow-md);
+    display: block;
+}
+
+.gh-post-feature figcaption {
+    margin-top: 0.5rem;
+    font-size: var(--fs-1);
+    color: var(--text-3);
+    text-align: center;
+    font-style: italic;
+}
+
+.gh-sidebar-post {
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+}
+
+@media (max-width: 1024px) {
+    .gh-post-wrapper {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem 2rem;
+    }
+    
+    .gh-sidebar-post {
+        margin-top: var(--space-md);
+    }
+}
+
+.gh-card, .gh-footer {
     border-radius: var(--radius-lg);
     background-color: var(--card);
     border: 1px solid var(--card-border);
@@ -95,8 +222,29 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Artigo em posts - visual limpo, sem card */
+.gh-post-wrapper .gh-article {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+    text-align: left;
+    padding: 0;
+}
+
+/* Garantir alinhamento consistente de todos os elementos do post */
+.gh-post-wrapper .gh-article .gh-post-feature,
+.gh-post-wrapper .gh-article .gh-post-header,
+.gh-post-wrapper .gh-article .post-content {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    margin-left: 0;
+    max-width: 72ch;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-    .gh-card:hover, .gh-article:hover {
+    .gh-card:hover {
         transform: translateY(-2px);
         box-shadow: var(--shadow-md);
     }
@@ -106,14 +254,14 @@ body {
 /* ---------------------------------------------------------- */
 
 .gh-card {
-    padding: 20px;
+    padding: 18px;
     overflow: hidden;
 }
 
 .gh-postfeed .gh-card {
     display: grid;
-    grid-template-columns: 4fr 10fr;
-    gap: 20px;
+    grid-template-columns: 280px 1fr;
+    gap: 16px;
 }
 
 
@@ -123,11 +271,13 @@ body {
 }
 
 .gh-card-thumbnail {
+    max-width: 280px;
     max-height: inherit;
     display: block;
     position: relative;
     overflow: hidden;
-    margin: -20px 0 -20px -20px;
+    margin: -18px 0 -18px -18px;
+    aspect-ratio: 4/3;
 }
 
 .gh-postfeed .gh-card-thumbnail {
@@ -135,7 +285,7 @@ body {
 }
 
 .gh-article .gh-card-thumbnail {
-    height: 300px;
+    height: 200px;
 }
 
 .cover {
@@ -196,9 +346,9 @@ a.gh-card-title {
     display: block;
     margin: 0 0 1rem;
     color: var(--text-3);
-    font-size: 1.4rem;
-    line-height: 1.2em;
-    letter-spacing: var(--letter-spacing-wide);
+    font-size: var(--fs-1);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--trk-wide);
     text-transform: uppercase;
     opacity: 0.9;
 }
@@ -206,7 +356,6 @@ a.gh-card-title {
 .gh-card-content {
     margin: 0 auto;
     text-align: center;
-    font-size: 1.6rem;
     grid-column: 1/-1;
 }
 
@@ -215,7 +364,12 @@ a.gh-card-title {
 }
 
 .gh-card-content > p {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
+    font-size: var(--fs-3);
+    line-height: var(--lh-loose);
+    max-width: 65ch;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .gh-card-content > strong {
@@ -269,16 +423,6 @@ a.gh-card-title {
 .gh-header {
     padding: 0 0 8vmin 0;
     text-align: center;
-}
-
-.gh-post-meta {
-    display: block;
-    margin: 0 0 1rem;
-    font-size: 1.4rem;
-    letter-spacing: var(--letter-spacing-wide);
-    text-transform: uppercase;
-    color: var(--text-3);
-    opacity: 0.9;
 }
 
 .gh-excerpt {
@@ -344,33 +488,37 @@ a.gh-card-title {
     Article
  */
 
-.gh-article {
-    padding: 3vmin;
-}
-
-.gh-article .gh-card {
-    border: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    margin: -8vmin -3vmin 3vmin;
-}
-
-.gh-article .gh-card .gh-card-thumbnail {
-    margin-bottom: 0;
+/* Artigo em posts - sem padding extra */
+.gh-post-wrapper .gh-article {
+    padding: 0;
 }
 
 
 @media (max-width: 700px) {
     body {
         background-size: 100% 100vh, 100% 100vh;
+        overflow-x: hidden;
     }
 
     .gh-container.body {
         grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+    
+    .gh-main {
+        padding: 2vmin 3vmin;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     .gh-postfeed .gh-card {
         display: block;
+        grid-template-columns: 1fr;
+    }
+
+    .gh-card-thumbnail {
+        max-width: 100%;
+        margin: -18px -18px 16px -18px;
     }
 
     .gh-card-thumbnail, .gh-article .gh-card-thumbnail {
@@ -379,7 +527,7 @@ a.gh-card-title {
     }
 
     .gh-postfeed .gh-card-thumbnail, .gh-article .gh-card-thumbnail {
-        margin-right: -20px;
+        margin-right: -18px;
     }
 
     .gh-page-head > p {

@@ -9,16 +9,16 @@ jobs:
         name: Run tests
         runs-on: ubuntu-22.04
         steps:
-            -   uses: actions/checkout@v2
+            -   uses: actions/checkout@v4
 
             -   name: Install Node.js
-                uses: actions/setup-node@v3
+                uses: actions/setup-node@v4
                 with:
-                    node-version: ^18
+                    node-version: ^22
 
             -   name: Install PNPM
                 id: pnpm-install
-                uses: pnpm/action-setup@v2
+                uses: pnpm/action-setup@v3
                 with:
                     version: ^7.29
                     run_install: false
@@ -29,7 +29,7 @@ jobs:
                 run: |
                     echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-            -   uses: actions/cache@v3
+            -   uses: actions/cache@v4
                 name: Setup pnpm cache
                 with:
                     path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
@@ -48,16 +48,16 @@ jobs:
         runs-on: ubuntu-22.04
         if: startsWith(github.ref, 'refs/tags/v')
         steps:
-            -   uses: actions/checkout@v2
+            -   uses: actions/checkout@v4
 
             -   name: Install Node.js
-                uses: actions/setup-node@v3
+                uses: actions/setup-node@v4
                 with:
-                    node-version: ^18
+                    node-version: ^22
 
             -   name: Install PNPM
                 id: pnpm-install
-                uses: pnpm/action-setup@v2
+                uses: pnpm/action-setup@v3
                 with:
                     version: ^7.29
                     run_install: false
@@ -68,7 +68,7 @@ jobs:
                 run: |
                     echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-            -   uses: actions/cache@v3
+            -   uses: actions/cache@v4
                 name: Setup pnpm cache
                 with:
                     path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
