@@ -1,0 +1,151 @@
+.gh-sidebar .widget {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 30px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2.5vmin 1vmin;
+}
+
+.gh-sidebar a {
+    text-decoration: none;
+}
+
+.gh-sidebar .social {
+    margin-top: 15px;
+}
+
+.gh-sidebar .social a {
+    display: block;
+    float: left;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.gh-sidebar .social a:last-child {
+    margin-right: 0;
+}
+
+.gh-sidebar .social a svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--text-2);
+    transition: fill 0.2s ease;
+}
+
+.gh-sidebar .social a svg path {
+    stroke: var(--text-2);
+    transition: stroke 0.2s ease;
+}
+
+.gh-sidebar .social a:hover svg {
+    fill: var(--link-hover);
+}
+
+.gh-sidebar .social a:hover svg path {
+    stroke: var(--link-hover);
+}
+
+.author.widget .avatar {
+    width: 90px;
+    height: 90px;
+    margin-right: 20px;
+}
+
+.author.widget .avatar .thumb {
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent);
+    position: relative;
+    z-index: 1;
+    min-height: 90px;
+}
+
+.author.widget .avatar .image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100% !important;
+    z-index: 1;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.author.widget h1, h2, h3, h4, p,
+.gh-sidebar .gh-card-content.no-image,
+.gh-sidebar .tag-cloud,
+.gh-sidebar .gh-table-of-content {
+    grid-column: 1/-1;
+}
+
+.gh-sidebar .gh-card-content {
+    margin: 0;
+}
+
+.gh-sidebar .gh-card-content > * {
+    margin: 0;
+}
+
+.gh-sidebar .gh-card-content a:hover > * {
+    color: var(--link-hover);
+}
+
+
+.gh-sidebar .gh-card-title {
+    font-size: 2rem;
+    text-align: left;
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    color: var(--text-1);
+}
+
+.gh-sidebar .gh-card-meta {
+    text-align: left;
+}
+
+.gh-sidebar .gh-card-thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    padding: 0;
+    margin: 5px 0 0;
+}
+
+.gh-sidebar .tags a {
+    background: var(--accent);
+    color: var(--text-1);
+    border-radius: var(--radius);
+    float: left;
+    display: block;
+    margin-top: 5px;
+    padding: 3px 15px;
+    font-size: 1.2rem;
+    transition: background 0.2s ease;
+}
+
+.gh-sidebar .tags a:hover {
+    background: var(--accent-2);
+    color: var(--text-1);
+}
+
+.widget.table-of-content {
+    display: none;
+    position: sticky;
+    top: 50px;
+    z-index: 1000;
+}
+
+@media (max-width: 700px) {
+    .widget.table-of-content {
+        position: relative;
+        top: 0;
+    }
+}
