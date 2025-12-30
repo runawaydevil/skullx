@@ -2,7 +2,7 @@
 
 A minimal, editorial-style theme for Ghost CMS 6.0+. Built with a focus on readability and clean typography.
 
-**Version:** 0.0.1  
+**Version:** 0.02 
 **Developer:** [runawaydevil](https://github.com/runawaydevil)  
 **Ghost Version:** 6.0+  
 **Repository:** [runawaydevil/skullx](https://github.com/runawaydevil/skullx)
