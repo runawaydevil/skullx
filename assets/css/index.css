@@ -126,12 +126,13 @@ body {
 }
 
 .gh-post-meta {
-    font-size: var(--fs-0);
+    font-size: var(--fs-1);
     color: var(--text-3);
     text-transform: uppercase;
     letter-spacing: var(--trk-wide);
     text-align: left !important;
     display: block;
+    margin-bottom: 2rem;
 }
 
 .gh-post-meta a {

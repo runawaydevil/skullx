@@ -1,7 +1,7 @@
 {
     "name": "skullx",
     "description": "SkullX - A minimal feed-style theme for Ghost",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "engines": {
         "ghost": ">=6.0.0"
     },
