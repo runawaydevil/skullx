@@ -1,15 +1,25 @@
 # SkullX - Ghost Theme
 
-A minimal, editorial-style theme for Ghost CMS 6.0+. Built with a focus on readability and clean typography.
+A minimal feed-style theme for Ghost CMS 6.0+. Built with a focus on readability, clean typography, and perfect mobile responsiveness.
 
-**Version:** 0.02 
+**Version:** 0.0.2  
 **Developer:** [runawaydevil](https://github.com/runawaydevil)  
 **Ghost Version:** 6.0+  
 **Repository:** [runawaydevil/skullx](https://github.com/runawaydevil/skullx)
 
 ## Overview
 
-SkullX is a Ghost theme designed for content-focused publications. It features a clean editorial layout with optimized reading width, responsive sidebar, and support for Ghost's native features including members, subscriptions, and multi-language content.
+SkullX is a Ghost theme designed for content-focused publications. It features a clean feed-style layout with optimized reading width, fully responsive design, sidebar with author information, and support for Ghost's native features including members, subscriptions, and multi-language content.
+
+### What's New in v0.0.2
+
+- **Perfect Mobile Responsiveness**: Complete overhaul of mobile layout with properly aligned images and optimized spacing
+- **Fixed Image Alignment**: Featured images in cards now perfectly align with card borders
+- **Unified Breakpoints**: Standardized responsive breakpoints across all components (740px mobile, 980px tablet)
+- **Improved Layout**: Cards now use vertical stacking on mobile for better user experience
+- **Optimized Spacing**: Reduced padding and improved spacing for mobile devices
+
+See [RELEASE_NOTES_v0.0.2.md](RELEASE_NOTES_v0.0.2.md) for full details.
 
 ## Screenshot
 
@@ -17,15 +27,16 @@ SkullX is a Ghost theme designed for content-focused publications. It features a
 
 ## Features
 
-- Editorial-style layout with optimized reading width (72ch)
-- Fully responsive design for mobile, tablet, and desktop
-- Sidebar with author information, latest posts, and tag cloud
-- Automatic table of contents (TocBot) for posts
-- Syntax highlighting with Highlight.js
-- Search functionality
-- Members and subscriptions support
-- Multi-language support (i18n)
-- Customizable theme settings via Ghost Admin
+- **Feed-style layout** with optimized reading width (72ch)
+- **Fully responsive design** for mobile, tablet, and desktop with perfect image alignment
+- **Sidebar** with author information, latest posts, and tag cloud
+- **Automatic table of contents** (TocBot) for posts
+- **Syntax highlighting** with Highlight.js
+- **Search functionality**
+- **Members and subscriptions** support
+- **Multi-language support** (i18n) - Portuguese (BR), English, Russian
+- **Customizable theme settings** via Ghost Admin
+- **Perfect mobile experience** with optimized cards and spacing
 
 ## Installation
 
@@ -207,6 +218,19 @@ You can create custom templates for specific pages by adding the slug to the tem
 - `page-about.hbs` - Custom template for `/about/` page
 - `tag-news.hbs` - Custom template for `/tag/news/` archive
 - `author-jamie.hbs` - Custom template for `/author/jamie/` archive
+
+## Changelog
+
+### v0.0.2 (Current)
+- Complete mobile responsiveness overhaul
+- Fixed featured images alignment in cards
+- Unified breakpoints across all components
+- Improved layout and spacing for mobile devices
+- See [RELEASE_NOTES_v0.0.2.md](RELEASE_NOTES_v0.0.2.md) for details
+
+### v0.0.1
+- Initial release
+- See [RELEASE_NOTES_v0.0.1.md](RELEASE_NOTES_v0.0.1.md) for details
 
 ## Browser Support
 
