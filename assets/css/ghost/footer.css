@@ -98,7 +98,8 @@
     display: none !important;
 }
 
-@media (max-width: 700px) {
+/* Mobile - Breakpoint 740px (--small) */
+@media (max-width: 740px) {
     .gh-foot {
         padding: 1.5rem 0;
     }

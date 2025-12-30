@@ -37,7 +37,8 @@
     margin-left: 10px;
 }
 
-@media (max-width: 600px) {
+/* Mobile - Breakpoint 740px (--small) */
+@media (max-width: 740px) {
     .gh-auth-box {
         flex-direction: column;
         max-width: 400px;

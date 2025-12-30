@@ -361,7 +361,8 @@
     display: block;
 }
 
-@media (max-width: 700px) {
+/* Mobile - Breakpoint 740px (--small) */
+@media (max-width: 740px) {
     .widget.table-of-content {
         position: relative;
         top: 0;

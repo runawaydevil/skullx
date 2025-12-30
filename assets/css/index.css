@@ -202,7 +202,8 @@ body {
     gap: var(--grid-gap);
 }
 
-@media (max-width: 1024px) {
+/* Tablet - Breakpoint 980px (--medium) */
+@media (max-width: 980px) {
     .gh-post-wrapper {
         grid-template-columns: 1fr;
         padding: 1.5rem 1rem 2rem;
@@ -210,6 +211,11 @@ body {
     
     .gh-sidebar-post {
         margin-top: var(--space-md);
+    }
+
+    .gh-container.body {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 }
 
@@ -494,7 +500,8 @@ a.gh-card-title {
 }
 
 
-@media (max-width: 700px) {
+/* Mobile First - Breakpoint 740px (--small) */
+@media (max-width: 740px) {
     body {
         background-size: 100% 100vh, 100% 100vh;
         overflow-x: hidden;
@@ -503,56 +510,134 @@ a.gh-card-title {
     .gh-container.body {
         grid-template-columns: 1fr;
         max-width: 100%;
+        gap: 20px;
     }
     
     .gh-main {
-        padding: 2vmin 3vmin;
+        padding: 1rem;
         max-width: 100%;
         overflow-x: hidden;
     }
 
-    .gh-postfeed .gh-card {
-        display: block;
-        grid-template-columns: 1fr;
+    .gh-postfeed {
+        gap: 1.5rem;
     }
 
+    /* Melhorar espaçamento de elementos */
+    .gh-post-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .gh-post-title {
+        font-size: clamp(1.3rem, 4vw, 1.9rem);
+    }
+
+    /* Cards - Layout Vertical em Mobile */
+    .gh-postfeed .gh-card {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        overflow: visible;
+    }
+
+    /* Thumbnail - Alinhamento Perfeito com Card */
     .gh-card-thumbnail {
+        width: 100%;
         max-width: 100%;
-        margin: -18px -18px 16px -18px;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--card-radius, 14px) var(--card-radius, 14px) 0 0;
         aspect-ratio: 16/9;
     }
 
     .gh-card-thumbnail, .gh-article .gh-card-thumbnail {
         height: auto;
-        min-height: 200px;
-        margin-bottom: 10px;
+        margin-bottom: 0;
     }
 
     .gh-postfeed .gh-card-thumbnail, .gh-article .gh-card-thumbnail {
-        margin-right: -18px;
+        margin-right: 0;
     }
-
+    
+    /* Imagem - Preencher Container Perfeitamente */
     .gh-card-thumbnail .cover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         object-position: center;
+        display: block;
+    }
+
+    /* Card Content - Padding Ajustado */
+    .gh-card-content {
+        padding: 1rem;
+        grid-column: 1;
+        margin: 0;
+    }
+
+    .gh-card-content > p {
+        margin-bottom: 1rem;
+        font-size: var(--fs-2);
+    }
+
+    .gh-card-title {
+        margin-bottom: 0.5rem;
+    }
+
+    .gh-card-meta {
+        margin-bottom: 0.75rem;
+        font-size: var(--fs-0);
+    }
+
+    .gh-card-thumbnail + .gh-card-content {
+        grid-column: 1;
+    }
+
+    /* Card - Padding apenas no content, não no card inteiro */
+    .gh-card {
+        padding: 0;
+        border-radius: var(--card-radius, 14px);
     }
 
     .gh-page-head > p {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        padding: 0 1rem;
     }
 
     .gh-author-meta {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
 
-    /* Corrigir featured images cortadas em mobile */
-    .gh-post-feature img {
-        max-height: none;
-        object-fit: contain;
-        object-position: center;
-    }
-
+    /* Featured Images em Posts */
     .gh-post-feature {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+
+    .gh-post-feature img {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: cover;
+        object-position: center;
+        border-radius: var(--card-radius, 14px);
+    }
+
+    /* Post Wrapper */
+    .gh-post-wrapper {
+        padding: 1rem;
+    }
+
+    .gh-post-wrapper .gh-article .gh-post-feature,
+    .gh-post-wrapper .gh-article .gh-post-header,
+    .gh-post-wrapper .gh-article .post-content {
         padding-left: 0;
         padding-right: 0;
     }

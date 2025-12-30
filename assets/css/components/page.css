@@ -175,7 +175,8 @@
     color: var(--bg) !important;
 }
 
-@media (max-width: 1024px) {
+/* Tablet - Breakpoint 980px (--medium) */
+@media (max-width: 980px) {
     .layout--page {
         grid-template-columns: 1fr;
         padding: 1.5rem 1rem 2rem;

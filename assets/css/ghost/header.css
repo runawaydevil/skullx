@@ -261,7 +261,8 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
 /* ---------------------------------------------------------- */
 /* IDs needed to ensure sufficient specificity */
 
-@media (max-width: 900px) {
+/* Tablet - Breakpoint 980px (--medium) */
+@media (max-width: 980px) {
     .gh-burger {
         display: inline-block;
     }
@@ -347,7 +348,8 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
     }
 }
 
-@media (max-width: 600px) {
+/* Mobile - Breakpoint 740px (--small) */
+@media (max-width: 740px) {
     #gh-head .gh-head-menu {
         font-size: 6vmin;
     }

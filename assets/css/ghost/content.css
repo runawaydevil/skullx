@@ -103,7 +103,8 @@
     background: var(--accent);
 }
 
-@media (max-width: 650px) {
+/* Mobile - Breakpoint 740px (--small) */
+@media (max-width: 740px) {
     .gh-canvas blockquote,
     .gh-canvas ol,
     .gh-canvas ul,
