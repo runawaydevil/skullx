@@ -2,7 +2,7 @@
 
 A minimal feed-style theme for Ghost CMS 6.0+. Built with a focus on readability, clean typography, and perfect mobile responsiveness.
 
-**Version:** 0.0.2  
+**Version:** 0.0.4  
 **Developer:** [runawaydevil](https://github.com/runawaydevil)  
 **Ghost Version:** 6.0+  
 **Repository:** [runawaydevil/skullx](https://github.com/runawaydevil/skullx)
