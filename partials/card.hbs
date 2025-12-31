@@ -1,0 +1,34 @@
+{{!--
+Re-usable card for linking to posts
+--}}
+
+<article class="gh-card {{post_class}}">
+    {{#if feature_image}}
+        <a class="gh-card-thumbnail" href="{{url}}">
+            <img class="cover"
+                 srcset="{{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 600w,
+                        {{img_url feature_image size="l"}} 1000w,
+                        {{img_url feature_image size="xl"}} 2000w"
+                 sizes="(max-width: 1000px) 400px, 700px"
+                 src="{{img_url feature_image size="m"}}"
+                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                 loading="lazy"
+            />
+        </a>
+    {{/if}}
+
+    <div class="gh-card-content">
+        <a href="{{url}}" class="gh-card-title">
+            <h2 class="gh-card-title skx-card-title">{{title}}</h2>
+            <span class="gh-card-meta">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                <span class="bull">&bull;</span> {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}
+            </span>
+        </a>
+        <p>{{{excerpt words="25"}}}</p>
+        <a class="gh-button" href="{{url}}">
+            <strong>{{t "Read more"}}</strong>
+        </a>
+    </div>
+</article>

@@ -1,0 +1,215 @@
+{
+    "name": "skullx",
+    "description": "SkullX - A minimal feed-style theme for Ghost",
+    "version": "0.0.4",
+    "engines": {
+        "ghost": ">=6.0.0"
+    },
+    "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.png",
+        "mobile": "assets/screenshot-mobile.png"
+    },
+    "scripts": {
+        "dev": "rollup -c --environment BUILD:development -w",
+        "build": "rollup -c --environment BUILD:production",
+        "zip": "npm run build && node build-zip.js",
+        "test": "gscan .",
+        "pretest": "pnpm run build"
+    },
+    "author": {
+        "name": "runawaydevil",
+        "email": "runawaydevil@pm.me",
+        "url": "https://pablo.space"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Dark",
+            "Blog"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/runawaydevil/skullx.git"
+    },
+    "bugs": "https://github.com/runawaydevil/skullx/issues",
+    "contributors": [
+        {
+            "name": "Ghost Foundation",
+            "url": "https://github.com/TryGhost/Starter/graphs/contributors"
+        },
+        {
+            "name": "runawaydevil"
+        }
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.21.0",
+        "@babel/preset-env": "^7.20.2",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-commonjs": "^24.0.1",
+        "@rollup/plugin-node-resolve": "^15.0.1",
+        "@rollup/plugin-terser": "^0.4.0",
+        "bestzip": "^2.2.1",
+        "gscan": "^5.0.0",
+        "highlight.js": "^11.7.0",
+        "postcss": "^8.4.21",
+        "postcss-import": "^15.1.0",
+        "postcss-preset-env": "^8.0.1",
+        "rollup": "^3.18.0",
+        "rollup-plugin-livereload": "^2.0.5",
+        "rollup-plugin-postcss": "^4.0.2"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "config": {
+        "card_assets": true,
+        "posts_per_page": 15,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1200
+            },
+            "xl": {
+                "width": 2000
+            }
+        },
+        "custom": {
+            "font": {
+                "type": "select",
+                "options": [
+                    "Monospace",
+                    "Serif",
+                    "Sans-serif"
+                ],
+                "default": "Monospace"
+            },
+            "layout": {
+                "type": "select",
+                "options": [
+                    "Full-width",
+                    "1220px",
+                    "960px"
+                ],
+                "default": "1220px"
+            },
+            "content_width": {
+                "type": "select",
+                "options": [
+                    "720",
+                    "760",
+                    "820"
+                ],
+                "default": "760"
+            },
+            "grid_gap": {
+                "type": "select",
+                "options": [
+                    "20",
+                    "24",
+                    "28"
+                ],
+                "default": "24"
+            },
+            "card_image_ratio": {
+                "type": "select",
+                "options": [
+                    "3/2",
+                    "4/3",
+                    "16/9"
+                ],
+                "default": "3/2"
+            },
+            "card_image_height": {
+                "type": "select",
+                "options": [
+                    "180",
+                    "220",
+                    "260"
+                ],
+                "default": "220"
+            },
+            "card_radius": {
+                "type": "select",
+                "options": [
+                    "12",
+                    "14",
+                    "16"
+                ],
+                "default": "14"
+            },
+            "card_shadow": {
+                "type": "select",
+                "options": [
+                    "none",
+                    "soft",
+                    "medium"
+                ],
+                "default": "soft"
+            },
+            "show_newsletter": {
+                "type": "boolean",
+                "default": true
+            },
+            "show_author_card": {
+                "type": "boolean",
+                "default": true
+            },
+            "post_feature_ratio": {
+                "type": "select",
+                "options": [
+                    "16/9",
+                    "2/1",
+                    "none"
+                ],
+                "default": "2/1"
+            },
+            "author_name_override": {
+                "type": "text",
+                "default": ""
+            },
+            "author_bio_override": {
+                "type": "text",
+                "default": ""
+            },
+            "author_avatar_url": {
+                "type": "text",
+                "default": ""
+            },
+            "author_twitter_url": {
+                "type": "text",
+                "default": ""
+            },
+            "author_facebook_url": {
+                "type": "text",
+                "default": ""
+            },
+            "author_instagram_url": {
+                "type": "text",
+                "default": ""
+            },
+            "author_github_url": {
+                "type": "text",
+                "default": ""
+            }
+        }
+    },
+    "type": "module"
+}

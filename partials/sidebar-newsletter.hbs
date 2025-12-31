@@ -1,0 +1,24 @@
+{{#if @custom.show_newsletter}}
+<section class="newsletter widget">
+    <h4>{{t "Assine a newsletter"}}</h4>
+    <p>{{t "Receba nossos conteúdos exclusivos diretamente no seu e-mail."}}</p>
+    <form class="gh-newsletter-form" data-members-form="signup">
+        <input type="email" 
+               class="gh-newsletter-input" 
+               data-members-email 
+               placeholder="{{t "Seu e-mail"}}" 
+               aria-label="{{t "E-mail"}}"
+               required
+               autocomplete="email">
+        <button type="submit" class="gh-button gh-button-primary">
+            <span class="gh-button-content">{{t "Assinar"}}</span>
+            <span class="gh-button-loader">{{> "icons/loader"}}</span>
+        </button>
+        <div class="message-success">
+            <strong>{{t "Ótimo!"}}</strong> {{t "Verifique sua caixa de entrada e clique no link para confirmar sua assinatura."}}
+        </div>
+        <div class="message-error">{{t "Por favor, insira um endereço de e-mail válido!"}}</div>
+    </form>
+</section>
+{{/if}}
+

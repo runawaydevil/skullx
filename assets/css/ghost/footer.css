@@ -1,0 +1,114 @@
+/* Global Footer
+/* ---------------------------------------------------------- */
+
+.gh-foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    font-family: var(--font-body);
+}
+
+.gh-foot .gh-container {
+    width: auto;
+}
+
+.gh-foot a {
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.gh-foot a:hover {
+    color: var(--text-1);
+}
+
+.gh-foot-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gh-foot-menu .nav {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    font-size: var(--fs-2);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+}
+
+.gh-foot-menu .nav li {
+    margin: 0 1rem;
+    padding: 0;
+}
+
+.gh-foot-menu .nav a {
+    display: inline-block;
+    padding: 0.25rem 0;
+    text-decoration: none;
+    color: var(--text-2);
+}
+
+.gh-foot-menu .nav a:hover {
+    color: var(--text-1);
+}
+
+.gh-foot-meta {
+    margin: 1rem 0 0;
+    font-size: var(--fs-1);
+    font-family: var(--font-body);
+    text-align: center;
+    color: var(--text-3);
+}
+
+.gh-foot-meta a {
+    color: var(--text-2);
+}
+
+.gh-foot-meta a:hover {
+    color: var(--text-1);
+}
+
+/* Esconder qualquer botão sign up no footer */
+.gh-foot [data-portal="signup"],
+.gh-foot .gh-button[data-portal="signup"],
+.gh-foot a[href*="signup"],
+.gh-foot a[href*="/signup/"],
+.gh-foot .nav a[href*="signup"],
+.gh-foot .nav a[href*="/signup/"],
+.gh-foot-menu .nav a[href*="signup"],
+.gh-foot-menu .nav a[href*="/signup/"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Esconder item de lista que contém link signup */
+.gh-foot-menu .nav li:has(a[href*="signup"]),
+.gh-foot-menu .nav li:has(a[href*="/signup/"]) {
+    display: none !important;
+}
+
+/* Mobile - Breakpoint 740px (--small) */
+@media (max-width: 740px) {
+    .gh-foot {
+        padding: 1.5rem 0;
+    }
+    
+    .gh-foot-menu .nav {
+        font-size: var(--fs-1);
+    }
+    
+    .gh-foot-menu .nav li {
+        margin: 0 0.75rem;
+    }
+}

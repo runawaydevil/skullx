@@ -1,0 +1,751 @@
+/*
+
+This is a development CSS file that is compiled to a minified
+production stylesheet in assets/built/screen.css using: npm run dev
+
+*/
+
+/* Lib - Local component imports
+/* ---------------------------------------------------------- */
+
+/* Base components */
+@import "vars.css";
+@import "components/global.css";
+@import "components/forms.css";
+@import "components/buttons.css";
+@import "components/sidebar.css";
+@import "components/post-content.css";
+@import "components/page.css";
+@import "components/gh-content.css";
+
+/* Ghost components */
+@import "ghost/header.css";
+@import "ghost/content.css";
+@import "ghost/readmore.css";
+@import "ghost/members.css";
+@import "ghost/errors.css";
+@import "ghost/footer.css";
+@import "ghost/badge.css";
+@import "ghost/pagination.css";
+@import "ghost/comments.css";
+
+
+/* Main - Your styles here! Edit below
+/* ---------------------------------------------------------- */
+
+body {
+    background: var(--bg);
+    background-image: 
+        radial-gradient(ellipse at top center, rgba(76, 29, 149, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at center, rgba(8, 145, 178, 0.03) 0%, transparent 50%);
+    background-attachment: fixed;
+    background-size: 100% 100vh, 100% 100vh;
+}
+
+.gh-no-grid {
+    grid: none;
+}
+
+.gh-viewport {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.gh-main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 3vmin 4vmin;
+}
+
+/* SkullX Unified Layout System */
+.skx-container {
+    width: 100%;
+    max-width: var(--skx-container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.skx-layout {
+    display: grid;
+    grid-template-columns: 1fr var(--skx-sidebar-width);
+    gap: var(--skx-gap);
+    align-items: start;
+}
+
+.skx-main {
+    min-width: 0; /* Prevent grid overflow */
+    max-width: var(--skx-main-max-width);
+}
+
+.skx-sidebar {
+    position: sticky;
+    top: calc(var(--height) + 1rem);
+    align-self: start;
+    max-height: calc(100vh - var(--height) - 2rem);
+    overflow-y: auto;
+}
+
+/* Mobile: Single column layout */
+@media (max-width: 980px) {
+    .skx-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .skx-sidebar {
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    .skx-container {
+        padding: 0 var(--space-sm);
+    }
+}
+
+/* SkullX Layout - Grid 2 colunas (main + sidebar) */
+/* Legacy layout styles - kept for backward compatibility */
+
+.gh-postfeed {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5vmin 2vmin;
+}
+
+
+.gh-container {
+    width: 100%;
+    max-width: var(--container-width, 1220px);
+    margin: 0 auto;
+}
+
+/* Legacy container styles for backward compatibility */
+.gh-container.body {
+    display: block; /* Remove grid layout - now handled by skx-layout */
+}
+
+/* Remove grid layout from post/page templates - now unified */
+.post-template .gh-container.body,
+.page-template .gh-container.body {
+    display: block;
+}
+
+/* Garantir que a sidebar global não ocupe espaço caso exista no DOM */
+.post-template .gh-sidebar,
+.page-template .gh-sidebar {
+    display: none !important;
+}
+
+/* Legacy post wrapper styles - simplified for unified layout */
+.gh-post-wrapper {
+    max-width: none; /* Let unified layout handle width */
+    margin: 0;
+    padding: 0;
+    display: block; /* Remove grid layout */
+}
+
+.gh-post-header {
+    max-width: 72ch;
+    margin: 0 0 1.5rem;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    text-align: left;
+    margin-left: 0;
+}
+
+.gh-post-title {
+    margin: 0 0 0.75rem;
+    font-size: var(--fs-h1);
+    font-family: var(--font-display);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--trk-tight);
+    color: var(--text-1);
+    font-weight: var(--font-semibold);
+    text-align: left;
+}
+
+.gh-post-meta {
+    font-size: var(--fs-1);
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: var(--trk-wide);
+    text-align: left !important;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.gh-post-meta a {
+    color: var(--text-1) !important;
+    text-decoration: none;
+}
+
+.gh-post-meta a:hover {
+    color: var(--text-1) !important;
+    text-decoration: underline;
+}
+
+.gh-post-excerpt {
+    margin: 0 0 3.5rem;
+    font-size: var(--fs-3);
+    line-height: var(--lh-loose);
+    color: var(--text-2);
+    text-align: left !important;
+}
+
+.gh-post-tags {
+    max-width: var(--content-width, 760px);
+    margin: 2rem auto 0;
+    font-size: var(--fs-1);
+    color: var(--text-2);
+    text-align: center;
+}
+
+.gh-post-tags a {
+    color: var(--text-1) !important;
+    text-decoration: none;
+}
+
+.gh-post-tags a:hover {
+    color: var(--text-1) !important;
+    text-decoration: underline;
+}
+
+.gh-post-feature {
+    margin: 1.5rem 0 0;
+    max-width: 72ch;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    margin-left: 0;
+}
+
+.gh-post-feature img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: var(--card-radius, 14px);
+    box-shadow: var(--shadow-md);
+    display: block;
+}
+
+.gh-post-feature figcaption {
+    margin-top: 0.5rem;
+    font-size: var(--fs-1);
+    color: var(--text-3);
+    text-align: center;
+    font-style: italic;
+}
+
+/* Legacy sidebar styles - now handled by unified layout */
+
+/* Tablet - Breakpoint 980px (--medium) */
+@media (max-width: 980px) {
+    /* Legacy styles for backward compatibility */
+}
+
+.gh-card, .gh-footer {
+    border-radius: var(--card-radius);
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Artigo em posts - visual limpo, sem card */
+.gh-post-wrapper .gh-article {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+    text-align: left;
+    padding: 0;
+}
+
+/* Garantir alinhamento consistente de todos os elementos do post */
+.gh-post-wrapper .gh-article .gh-post-feature,
+.gh-post-wrapper .gh-article .gh-post-header,
+.gh-post-wrapper .gh-article .post-content {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    margin-left: 0;
+    max-width: 72ch;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .gh-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+}
+
+/* Hero Featured Post */
+.skx-hero {
+    margin-bottom: 3rem;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+}
+
+.skx-hero-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.skx-hero-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.skx-hero-content {
+    padding: 2.5rem;
+}
+
+.skx-hero-meta {
+    font-size: var(--fs-1);
+    color: var(--skx-text-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--trk-wide);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.skx-hero-title {
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+    font-family: var(--font-sans-serif, var(--font-display));
+    font-weight: var(--font-semibold);
+    line-height: var(--lh-tight);
+    color: var(--skx-text-heading);
+    margin: 0 0 1rem;
+}
+
+.skx-hero-excerpt {
+    font-size: var(--fs-3);
+    line-height: var(--lh-normal);
+    color: var(--text-2);
+    margin: 0;
+}
+
+/* Index
+/* ---------------------------------------------------------- */
+
+.gh-card {
+    padding: var(--card-padding);
+    overflow: hidden;
+}
+
+.gh-postfeed .gh-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 16px;
+}
+
+
+.gh-card-link {
+    display: flex;
+    flex-direction: column;
+}
+
+.gh-card-thumbnail {
+    max-width: 280px;
+    max-height: inherit;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: -18px 0 -18px -18px;
+    aspect-ratio: 4/3;
+}
+
+.gh-postfeed .gh-card-thumbnail {
+    margin-right: 0;
+}
+
+.gh-article .gh-card-thumbnail {
+    height: 200px;
+}
+
+.cover {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100% !important;
+    z-index: 1;
+    -webkit-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
+    object-fit: cover;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .gh-card:hover .cover {
+        transform: scale(1.05);
+    }
+}
+
+
+.gh-card-image {
+    width: 100%;
+    max-height: 700px;
+    object-fit: cover;
+    margin-bottom: 4vmin;
+}
+
+a.gh-card-title {
+    text-decoration: none;
+}
+
+.gh-card-thumbnail .gh-card-title, .gh-card-thumbnail .gh-card-meta {
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.gh-card-thumbnail .gh-card-title {
+    bottom: 0;
+    text-align: center;
+    padding: 10px 40px;
+}
+
+.gh-card-thumbnail .gh-card-meta {
+    top: 0;
+    padding: 20px 40px;
+    color: var(--text-1);
+}
+
+.gh-card-meta {
+    display: block;
+    margin: 0 0 1rem;
+    color: var(--skx-text-muted);
+    font-size: var(--fs-1); /* 13px - discreto */
+    line-height: var(--lh-tight);
+    letter-spacing: var(--trk-wide);
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.gh-card-content {
+    margin: 0 auto;
+    text-align: center;
+    grid-column: 1/-1;
+}
+
+.gh-card-thumbnail + .gh-card-content {
+    grid-column: 2;
+}
+
+/* Card Title Editorial */
+.skx-card-title {
+    font-size: clamp(1.375rem, 1.8vw, 1.625rem); /* 22-26px */
+    font-family: var(--font-sans-serif, var(--font-display));
+    font-weight: var(--font-semibold);
+    line-height: var(--lh-tight);
+    color: var(--skx-text-heading);
+    margin: 0 0 0.75rem;
+}
+
+.gh-card-content > p {
+    margin-bottom: 1.25rem;
+    font-size: var(--fs-2);
+    line-height: var(--lh-normal);
+    max-width: 65ch;
+    margin-left: auto;
+    margin-right: auto;
+    /* Clamp excerpt a 2-3 linhas */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gh-card-content > strong {
+    display: inline-block;
+    padding: 1px 0;
+    font-weight: 500;
+    box-shadow: 0 -1px 0 0 inset currentColor;
+    opacity: 0.5;
+}
+
+
+/* Page
+/* ---------------------------------------------------------- */
+.gh-page {
+    overflow: hidden;
+    padding-right: 10px;
+}
+
+.gh-page-head {
+    margin: 0 auto;
+    padding: 8vmin 0 4vmin;
+    text-align: center;
+}
+
+.gh-page-image {
+    margin: 4vmin 0 0 0;
+}
+
+.gh-page-head > p {
+    max-width: 720px;
+    margin: 0.3em auto 0;
+    padding: 0 6vmin;
+    font-size: 1.3em;
+    line-height: 1.4em;
+    opacity: 0.5;
+    text-align: center;
+}
+
+/* Post
+/* ---------------------------------------------------------- */
+
+.gh-post-thumbnail {
+    height: 300px;
+    display: block;
+    margin: -3vmin -3vmin 2vmin;
+    max-height: inherit;
+    overflow: hidden;
+    position: relative;
+}
+
+.gh-header {
+    padding: 0 0 8vmin 0;
+    text-align: center;
+}
+
+.gh-excerpt {
+    margin: 1rem 3vmin;
+}
+
+.gh-feature-image {
+    grid-column: wide-start / wide-end;
+    width: 100%;
+    margin: 8vmin 0 0;
+}
+
+.gh-feature-image img {
+    margin-inline: auto;
+}
+
+.gh-post-footer {
+    margin: 2rem 0;
+}
+
+
+/* Author Archive
+/* ---------------------------------------------------------- */
+
+.gh-author-image {
+    height: 12vmin;
+    width: 12vmin;
+    margin: 0 auto 1.5em;
+    border-radius: 100%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.gh-author-meta {
+    margin: 2vmin 0 0 0;
+    font-size: 1.2em;
+}
+
+.gh-author-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gh-author-links a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0.75vmin;
+}
+
+.gh-author-links a + a:before {
+    display: block;
+    content: "";
+    margin: 0 1.25vmin 0 0;
+    height: 1em;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.3);
+    transform: rotate(20deg);
+}
+
+/**
+    Article
+ */
+
+/* Artigo em posts - sem padding extra */
+.gh-post-wrapper .gh-article {
+    padding: 0;
+}
+
+
+/* Mobile First - Breakpoint 740px (--small) */
+@media (max-width: 740px) {
+    body {
+        background-size: 100% 100vh, 100% 100vh;
+        overflow-x: hidden;
+    }
+    
+    .gh-main {
+        padding: 1rem;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .gh-postfeed {
+        gap: 1.5rem;
+    }
+    
+    /* Hero featured em mobile */
+    .skx-hero-image {
+        height: 250px;
+    }
+    
+    .skx-hero-content {
+        padding: 1.5rem;
+    }
+    
+    .skx-hero-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    /* Melhorar espaçamento de elementos */
+    .gh-post-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .gh-post-title {
+        font-size: clamp(1.3rem, 4vw, 1.9rem);
+    }
+
+    /* Cards - Layout Vertical em Mobile */
+    .gh-postfeed .gh-card {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        overflow: visible;
+    }
+
+    /* Thumbnail - Alinhamento Perfeito com Card */
+    .gh-card-thumbnail {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--card-radius, 14px) var(--card-radius, 14px) 0 0;
+        aspect-ratio: 16/9;
+    }
+
+    .gh-card-thumbnail, .gh-article .gh-card-thumbnail {
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    .gh-postfeed .gh-card-thumbnail, .gh-article .gh-card-thumbnail {
+        margin-right: 0;
+    }
+    
+    /* Imagem - Preencher Container Perfeitamente */
+    .gh-card-thumbnail .cover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+
+    /* Card Content - Padding Ajustado */
+    .gh-card-content {
+        padding: 1rem;
+        grid-column: 1;
+        margin: 0;
+    }
+
+    .gh-card-content > p {
+        margin-bottom: 1rem;
+        font-size: var(--fs-2);
+    }
+
+    .gh-card-title {
+        margin-bottom: 0.5rem;
+    }
+
+    .gh-card-meta {
+        margin-bottom: 0.75rem;
+        font-size: var(--fs-0);
+    }
+
+    .gh-card-thumbnail + .gh-card-content {
+        grid-column: 1;
+    }
+
+    /* Card - Padding apenas no content, não no card inteiro */
+    .gh-card {
+        padding: 0;
+        border-radius: var(--card-radius, 14px);
+    }
+    
+    /* Ajustar título do card em mobile */
+    .skx-card-title {
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+    }
+
+    .gh-page-head > p {
+        font-size: 1.4rem;
+        padding: 0 1rem;
+    }
+
+    .gh-author-meta {
+        font-size: 1.4rem;
+    }
+
+    /* Featured Images em Posts */
+    .gh-post-feature {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+
+    .gh-post-feature img {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: cover;
+        object-position: center;
+        border-radius: var(--card-radius, 14px);
+    }
+
+    /* Post Wrapper - Legacy support */
+
+    .gh-post-wrapper .gh-article .gh-post-feature,
+    .gh-post-wrapper .gh-article .gh-post-header,
+    .gh-post-wrapper .gh-article .post-content,
+    .gh-article .gh-post-feature,
+    .gh-article .gh-post-header,
+    .gh-article .post-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

@@ -1,0 +1,184 @@
+/* Variables - Design System
+/* ---------------------------------------------------------- */
+
+/* Base Tokens (não mudam entre temas) */
+:root {
+    /* Radius */
+    --radius: 12px;
+    --radius-sm: 8px;
+    --radius-lg: 16px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* Blur */
+    --blur-sm: blur(8px);
+    --blur-md: blur(12px);
+
+    /* Spacing Scale */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+
+    /* Typography - Font Stacks */
+    --font-display: 'Special Elite', 'Courier Prime', monospace;
+    --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'Space Mono', 'Source Code Pro', monospace;
+    --font-body: var(--font-mono);
+    --font-ui: var(--font-body);
+    --font-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    --font-serif: Podkova, Georgia, Times, serif;
+    
+    /* Typography - Font Sizes (base: 16px = 1rem) */
+    --fs-0: 0.75rem;    /* 12px - micro (badges, labels pequenos) */
+    --fs-1: 0.8125rem;  /* 13px - meta discreta */
+    --fs-2: 1.125rem;   /* 18px - base (body, UI) - aumentado para legibilidade */
+    --fs-3: 1.25rem;    /* 20px - lead (excerpt, destacado) */
+    --fs-h6: clamp(0.875rem, 0.95vw, 1rem);
+    --fs-h5: clamp(0.95rem, 1.05vw, 1.125rem);
+    --fs-h4: clamp(1rem, 1.1vw, 1.25rem);
+    --fs-h3: clamp(1.05rem, 1.15vw, 1.3rem);
+    --fs-h2: clamp(1.15rem, 1.3vw, 1.5rem);
+    --fs-h1: clamp(1.4rem, 1.8vw, 1.9rem);
+    
+    /* Typography - Legacy (mantido para compatibilidade) */
+    --font-size-base: var(--fs-2);
+    --font-accent: var(--font-display); /* Alias para compatibilidade */
+    
+    /* Typography - Line Heights */
+    --lh-tight: 1.2;      /* Headings */
+    --lh-normal: 1.7;     /* Body, parágrafos - aumentado para legibilidade */
+    --lh-loose: 1.75;     /* Excerpt, lead */
+    --line-height-base: var(--lh-normal);
+    --line-height-heading: var(--lh-tight);
+    
+    /* Typography - Letter Spacing */
+    --trk-tight: -0.015em;  /* Headings com Special Elite */
+    --trk-normal: 0;        /* Body, UI */
+    --trk-wide: 0.03em;     /* Meta uppercase */
+    --letter-spacing-tight: var(--trk-tight);
+    --letter-spacing-accent: var(--trk-tight);
+    --letter-spacing-normal: var(--trk-normal);
+    --letter-spacing-wide: var(--trk-wide);
+
+    /* Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* Sizes */
+    --height: 4rem;
+    --margin: 2rem;
+
+    /* Breakpoints */
+    --xlarge: 1680px;
+    --large: 1280px;
+    --medium: 980px;
+    --small: 740px;
+    --xsmall: 480px;
+
+    /* Custom Settings - Layout (fallbacks) */
+    --layout-width: var(--layout-width, 1220px);
+    --content-width: var(--content-width, 760px);
+    --grid-gap: var(--grid-gap, 24px);
+    
+    /* Layout Tokens */
+    --skx-container-max: var(--container-width, 1220px);
+    --skx-sidebar-width: 320px;
+    --skx-gap: 2rem;
+    --skx-gutter: 24px;
+    --skx-main-max-width: none;
+    
+    /* Typography Tokens */
+    --skx-body-size: var(--fs-2); /* 18px */
+    --skx-leading: var(--lh-normal); /* 1.7 */
+    --skx-heading-font: var(--font-sans-serif);
+    --skx-body-font: var(--font-serif);
+
+    /* Custom Settings - Cards (fallbacks) */
+    --card-image-ratio: var(--card-image-ratio, 3/2);
+    --card-image-height: var(--card-image-height, 220px);
+    --card-radius: var(--card-radius, 14px);
+    --card-shadow: var(--card-shadow, var(--shadow-sm));
+
+    /* Custom Settings - Post (fallbacks) */
+    --post-feature-ratio: var(--post-feature-ratio, 2/1);
+    --content-media-max-h: 620px;
+
+    /* Dracula Theme Colors (mantidos para compatibilidade e uso em acentos) */
+    --cyan: #8be9fd;
+    --green: #50fa7b;
+    --orange: #ffb86c;
+    --pink: #ff79c6;
+    --purple: #bd93f9;
+    --red: #ff5555;
+    --yellow: #f1fa8c;
+}
+
+/* Semantic Tokens - Light Theme (default) */
+:root {
+    /* Backgrounds */
+    --bg: #ffffff;
+    --bg-elev-1: #f8f9fa;
+    --bg-elev-2: #f1f3f5;
+    --card: #ffffff;
+    
+    /* Card Design Tokens */
+    --card-bg: var(--card);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --card-padding: 18px;
+    --card-shadow: var(--shadow-sm);
+    --card-radius: var(--card-radius, 14px);
+    
+    /* Text */
+    --text-1: #1a1a1a;
+    --text-2: #4a4a4a;
+    --text-3: #6a6a6a;
+    
+    /* Links */
+    --link: #0066cc;
+    --link-hover: #0052a3;
+    
+    /* Accents - Light theme uses black */
+    --accent: #000000;
+    --accent-2: #1a1a1a;
+    
+    /* Code */
+    --code-bg: #f8f9fa;
+    --code-border: rgba(0, 0, 0, 0.1);
+    --code-text: #1a1a1a;
+    
+    /* UI Elements */
+    --border: rgba(0, 0, 0, 0.1);
+    --border-strong: rgba(0, 0, 0, 0.15);
+    --selection-bg: rgba(0, 102, 204, 0.2);
+    --focus-ring: 0 0 0 2px rgba(0, 102, 204, 0.3);
+    
+    /* Status */
+    --success: var(--green);
+    --error: var(--red);
+    --warning: var(--yellow);
+    
+    /* Font (default to mono) */
+    --font: var(--font-body);
+}
+
+/* Legacy Token Mapping (compatibilidade durante transição) */
+:root {
+    --color-primary: var(--text-1);
+    --color-base: var(--text-1);
+    --color-base-01: rgba(255, 255, 255, 0.05);
+    --color-base-05: rgba(255, 255, 255, 0.5);
+    --color-border: var(--border);
+    --color-bg: var(--bg);
+    --color-bg-secondary: var(--card);
+    --color-bg-secondary-solid: var(--card);
+    --color-comment: var(--text-3);
+    --color-success: var(--success);
+    --color-error: var(--error);
+}

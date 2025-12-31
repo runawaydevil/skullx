@@ -1,0 +1,46 @@
+<section class="author widget">
+    {{#if @custom.author_avatar_url}}
+    <div class="avatar">
+        <a href="{{@site.url}}" class="thumb">
+            <span class="image" style="background-image: url('{{@custom.author_avatar_url}}');"></span>
+        </a>
+    </div>
+    {{/if}}
+    <div class="info">
+        <h4 class="author-name">
+            <a href="{{@site.url}}">
+                {{#if @custom.author_name_override}}
+                    {{@custom.author_name_override}}
+                {{else}}
+                    {{@site.title}}
+                {{/if}}
+            </a>
+        </h4>
+    </div>
+    <div class="social">
+        {{#if @custom.author_twitter_url}}
+            <a href="{{@custom.author_twitter_url}}" target="_blank" rel="noopener noreferrer" title="{{t "Twitter"}}">
+                {{> "icons/icons8-twitter"}}
+            </a>
+        {{/if}}
+        {{#if @custom.author_facebook_url}}
+            <a href="{{@custom.author_facebook_url}}" target="_blank" rel="noopener noreferrer" title="{{t "Facebook"}}">
+                {{> "icons/icons8-facebook"}}
+            </a>
+        {{/if}}
+        {{#if @custom.author_instagram_url}}
+            <a href="{{@custom.author_instagram_url}}" target="_blank" rel="noopener noreferrer" title="{{t "Instagram"}}">
+                {{> "icons/instagram"}}
+            </a>
+        {{/if}}
+        {{#if @custom.author_github_url}}
+            <a href="{{@custom.author_github_url}}" target="_blank" rel="noopener noreferrer" title="{{t "GitHub"}}">
+                {{> "icons/github"}}
+            </a>
+        {{/if}}
+    </div>
+    {{#if @custom.author_bio_override}}
+        <p>{{@custom.author_bio_override}}</p>
+    {{/if}}
+</section>
+

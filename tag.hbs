@@ -1,0 +1,25 @@
+{{!< default}}
+
+<div class="gh-page">
+    {{#tag}}
+    <header class="gh-page-head">
+        <h1>{{name}}</h1>
+        <p>
+            {{#if description}}
+                {{description}}
+            {{else}}
+            {{t "A collection of"}} {{plural ../pagination.total empty=(t 'posts') singular=(t '% post') plural=(t '% posts')}}
+            {{/if}}
+        </p>
+        {{#if feature_image}}
+            <img class="gh-page-image" src="{{feature_image}}" alt="{{name}}" />
+        {{/if}}
+    </header>
+    {{/tag}}
+
+    <div class="gh-postfeed">
+    {{#foreach posts}}
+        {{> "card"}} {{!-- partials/card.hbs --}}
+    {{/foreach}}
+    </div>
+</div>

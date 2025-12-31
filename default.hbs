@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    {{!-- Set light theme as default --}}
+    <script>
+        (function() {
+            try {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } catch(e) {
+                // Silent fail
+            }
+        })();
+    </script>
+    {{#if @site.font}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="{{@site.font}}" rel="stylesheet">
+    {{else}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        {{#match @custom.font "Monospace"}}
+            <link
+                href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
+                rel="stylesheet">
+        {{else}}
+            {{#match @custom.font "Sans-serif"}}
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
+                    rel="stylesheet">
+            {{else}}
+                {{#match @custom.font "Serif"}}
+                    <link href="https://fonts.googleapis.com/css2?family=Podkova:wght@400;600&display=swap"
+                          rel="stylesheet">
+                {{else}}
+                    {{!-- Default: Special Elite (accent) + JetBrains Mono (body) --}}
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"
+                        rel="stylesheet">
+                {{/match}}
+            {{/match}}
+        {{/match}}
+    {{/if}}
+
+    <link rel="stylesheet" href="{{asset "built/index.css"}}"/>
+
+    <title>{{meta_title}}</title>
+    {{ghost_head}}
+    {{!-- Outputs important meta data and settings, should always be in <head> --}}
+
+
+    <style>
+        :root {
+            {{#if @site.font_family}}
+                --font: {{@site.font_family}};
+            {{else}}
+                {{#match @custom.font "Monospace"}}--font: var(--font-mono);{{/match}}
+                {{#match @custom.font "Sans-serif"}}--font: var(--font-sans-serif);{{/match}}
+                {{#match @custom.font "Serif"}}--font: var(--font-serif);{{/match}}
+                {{!-- Default to serif for better readability if not specified --}}
+                {{#unless @custom.font}}--font: var(--font-serif);{{/unless}}
+            {{/if}}
+
+            {{#match @custom.layout "Full-width"}}--container-width: 100%;{{/match}}
+            {{#match @custom.layout "1220px"}}--container-width: 1220px;--layout-width: 1220px;{{/match}}
+            {{#match @custom.layout "960px"}}--container-width: 960px;--layout-width: 960px;{{/match}}
+
+            /* Layout */
+            {{#match @custom.content_width "720"}}--content-width: 720px;{{/match}}
+            {{#match @custom.content_width "760"}}--content-width: 760px;{{/match}}
+            {{#match @custom.content_width "820"}}--content-width: 820px;{{/match}}
+            --grid-gap: {{@custom.grid_gap}}px;
+
+            /* Cards */
+            --card-image-ratio: {{@custom.card_image_ratio}};
+            --card-image-height: {{@custom.card_image_height}}px;
+            --card-radius: {{@custom.card_radius}}px;
+            {{#match @custom.card_shadow "none"}}--card-shadow: none;{{/match}}
+            {{#match @custom.card_shadow "soft"}}--card-shadow: var(--shadow-sm);{{/match}}
+            {{#match @custom.card_shadow "medium"}}--card-shadow: var(--shadow-md);{{/match}}
+
+            /* Post */
+            {{#match @custom.post_feature_ratio "16/9"}}--post-feature-ratio: 16/9;{{/match}}
+            {{#match @custom.post_feature_ratio "2/1"}}--post-feature-ratio: 2/1;{{/match}}
+            {{#match @custom.post_feature_ratio "none"}}--post-feature-ratio: none;{{/match}}
+        }
+    </style>
+    <script src="{{asset "built/index.js"}}" defer></script>
+</head>
+<body class="{{body_class}}">
+<div class="gh-viewport">
+
+    <header id="gh-head" class="gh-head">
+        <nav class="gh-head-inner gh-container">
+
+            <div class="gh-head-brand">
+                <a class="gh-head-logo" href="{{@site.url}}">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}"/>
+                    {{else}}
+                        {{@site.title}}
+                    {{/if}}
+                </a>
+                <a class="gh-burger" role="button">
+                    <div class="gh-burger-box">
+                        <div class="gh-burger-inner"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="gh-head-menu">
+                {{navigation}}
+            </div>
+            <div class="gh-head-actions">
+                <div class="gh-head-actions-list">
+                    {{search}}
+                    {{#if @site.members_enabled}}
+                        {{#if @member}}
+                            <a class="gh-button" data-portal="account" href="#">{{t "Account"}}</a>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="gh-main">
+        {{#is "signin,signup,account"}}
+            {{!-- Member pages preserve clean layout without sidebar --}}
+            <div class="gh-container">
+                <div class="gh-page">
+                    {{{body}}}
+                </div>
+            </div>
+        {{else}}
+            <div class="skx-container">
+                <div class="skx-layout">
+                    <main class="skx-main">
+                        {{{body}}}
+                        {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
+                    </main>
+                    <aside class="skx-sidebar">
+                        {{> "sidebar"}}
+                    </aside>
+                </div>
+            </div>
+        {{/is}}
+    </main>
+
+    <footer class="gh-foot">
+        <div class="gh-container">
+            <div class="gh-foot-menu">
+                {{navigation type="secondary"}}
+            </div>
+            <div class="gh-foot-meta">
+                {{t "Designed by"}}
+                <a href="https://github.com/runawaydevil/skullx">runawaydevil</a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+{{!-- <foot> --}}
+{{ghost_foot}}
+{{!-- Outputs important scripts - should always be included before closing body tag --}}
+
+</body>
+</html>

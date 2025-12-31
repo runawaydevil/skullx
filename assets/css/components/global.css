@@ -1,0 +1,270 @@
+/* Reset
+/* ---------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 62.5%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: var(--text-2);
+    /* Usa --font definido no default.hbs baseado em @custom.font */
+    /* Quando não especificado, default.hbs usa --font-mono */
+    font-family: var(--font);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-normal);
+    font-style: normal;
+    background: var(--bg);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+
+p,
+ul,
+ol,
+li,
+dl,
+dd,
+hr,
+pre,
+form,
+table,
+video,
+figure,
+figcaption,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+ul[class],
+ol[class] {
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+input,
+button,
+select,
+textarea {
+    font: inherit;
+    -webkit-appearance: none;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: 700;
+}
+
+hr {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid currentcolor;
+    opacity: 0.2;
+}
+
+::selection {
+    text-shadow: none;
+    background: var(--selection-bg);
+    color: var(--text-1);
+}
+
+mark {
+    background-color: #fdffb6;
+}
+
+small {
+    font-size: 80%;
+}
+
+sub,
+sup {
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+ul:not([class]) li + li {
+    margin-top: 0.6em;
+}
+
+a:not([class]) {
+    color: var(--link);
+    text-decoration-skip-ink: auto;
+    transition: color 0.2s ease;
+}
+
+a[class] {
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+a:hover, a:hover h1, a:hover h2, a:hover h3 {
+    text-decoration: underline;
+    color: var(--link-hover);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    line-height: var(--lh-tight);
+    font-weight: var(--font-semibold);
+    color: var(--text-1);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+p {
+    text-align: justify;
+    margin-top: 0;
+    margin-bottom: 1.5em;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: var(--fs-h1);
+    /* Aplicar sans-serif nos headings quando não for monospace */
+    font-family: var(--font-sans-serif, var(--font-display));
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--trk-tight);
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+
+h1:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: var(--fs-h2);
+    font-family: var(--font-sans-serif, var(--font-display));
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--trk-tight);
+    margin-top: 1.25em;
+    margin-bottom: 0.625em;
+}
+
+h2:first-child {
+    margin-top: 0;
+}
+
+h3 {
+    font-size: var(--fs-h3);
+    font-family: var(--font-sans-serif, var(--font-body));
+    font-weight: var(--font-medium);
+    letter-spacing: var(--trk-normal);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+h3:first-child {
+    margin-top: 0;
+}
+
+h4 {
+    font-size: var(--fs-h4);
+    font-family: var(--font-sans-serif, var(--font-body));
+    font-weight: var(--font-medium);
+    letter-spacing: var(--trk-normal);
+    margin-top: 0.875em;
+    margin-bottom: 0.5em;
+}
+
+h4:first-child {
+    margin-top: 0;
+}
+
+h5 {
+    font-size: var(--fs-h5);
+    font-family: var(--font-sans-serif, var(--font-body));
+    letter-spacing: var(--trk-normal);
+    margin-top: 0.75em;
+    margin-bottom: 0.5em;
+}
+
+h5:first-child {
+    margin-top: 0;
+}
+
+h6 {
+    font-size: var(--fs-h6);
+    font-family: var(--font-sans-serif, var(--font-body));
+    letter-spacing: var(--trk-normal);
+    margin-top: 0.75em;
+    margin-bottom: 0.5em;
+}
+
+h6:first-child {
+    margin-top: 0;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.no-shadow {
+    box-shadow: none !important;
+}
+
+.show {
+    display: block!important;
+}
+
+.hide {
+    display: none!important;
+}
